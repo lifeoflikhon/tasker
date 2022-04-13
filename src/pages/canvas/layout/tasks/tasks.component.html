@@ -10,22 +10,24 @@
   </div>
 </div>
 
-<div *ngFor="let taskGroup of tasks | generateTaskGroups: isBlocker">
+<div>
   <div *ngIf="!isBlocker" (click)="toggleCollapsed()" class="hover:cursor-pointer flex items-center justify-between">
     <div class="mb-2 font-medium flex items-center space-x-2">
-      <i class="fas fa-chevron-down"
-         [ngClass]="{
-            'fa-chevron-right': taskGroup.isCollapsed,
-            'fa-chevron-down': !taskGroup.isCollapsed
-           }"
-      ></i>
-      <h5>{{taskGroup.stage}}</h5>
+      <i class="fas fa-chevron-down"></i>
+<!--      <i class="fas fa-chevron-right"></i>-->
+      <h5>To-Do</h5>
     </div>
 
-    <p>{{taskGroup.tasks.length}}</p>
+    <p>4</p>
   </div>
 
   <div class="grid gap-2">
-    <tasker-task [task]="task" *ngFor="let task of taskGroup.tasks"></tasker-task>
+    <tasker-task></tasker-task>
+    <tasker-task></tasker-task>
+    <tasker-task></tasker-task>
+    <tasker-task></tasker-task>
+    <tasker-task></tasker-task>
+    <tasker-task></tasker-task>
+    <tasker-task></tasker-task>
   </div>
 </div>

@@ -1,5 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Task } from '../../layout/tasks/tasks.component';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'tasker-task',
@@ -7,10 +6,7 @@ import { Task } from '../../layout/tasks/tasks.component';
   styleUrls: ['./task.component.scss']
 })
 export class TaskComponent implements OnInit {
-  @Input() task: Task;
-
-  @Output() onPauseOrPlay: EventEmitter<any> = new EventEmitter();
-  @Output() onCompleted: EventEmitter<boolean> = new EventEmitter();
+  paused: boolean = false;
 
   constructor() { }
 
@@ -18,11 +14,6 @@ export class TaskComponent implements OnInit {
   }
 
   toggleTaskTime() {
-    this.onPauseOrPlay.emit();
-  }
-
-  onCompletedStatusChanged(event: any) {
-    const isChecked = event.target.checked;
-    this.onCompleted.emit(isChecked);
+    this.paused = !this.paused;
   }
 }

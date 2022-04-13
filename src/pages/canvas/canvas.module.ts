@@ -9,7 +9,6 @@ import { WallComponent } from './layout/wall/wall.component';
 import { TasksComponent } from './layout/tasks/tasks.component';
 import { TaskComponent } from './components/task/task.component';
 import { MatMenuModule } from '@angular/material/menu';
-import { GenerateTaskGroupsPipe } from './pipes/generate-task-groups.pipe';
 
 
 @NgModule({
@@ -20,7 +19,6 @@ import { GenerateTaskGroupsPipe } from './pipes/generate-task-groups.pipe';
     WallComponent,
     TasksComponent,
     TaskComponent,
-    GenerateTaskGroupsPipe,
   ],
   imports: [
     CommonModule,

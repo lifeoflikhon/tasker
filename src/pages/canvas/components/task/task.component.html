@@ -1,12 +1,12 @@
 <div class="flex items-center justify-between p-4 bg-gray-50 rounded">
   <div class="flex items-center space-x-2">
-    <input type="checkbox" (change)="onCompletedStatusChanged($event)">
+    <input type="checkbox">
 
     <div>
-      <h5 class="font-medium">{{task.title}}</h5>
+      <h5 class="font-medium">Create basic task CRUD API</h5>
       <p class="text-[10px]">
-        <span class="text-gray-400">E</span>: {{task.estimatedTime}}
-        <span class="text-gray-400">S</span>: {{task.spentTime}}
+        <span class="text-gray-400">E</span>: 1h 20m
+        <span class="text-gray-400">S</span>: 20m
       </p>
     </div>
   </div>
@@ -14,7 +14,7 @@
   <div class="flex items-center space-x-2">
     <button>
       <i class="fas"
-         [ngClass]="{'fa-pause-circle': !task.isPaused, 'fa-play-circle': task.isPaused}"
+         [ngClass]="{'fa-pause-circle': !paused, 'fa-play-circle': paused}"
          (click)="toggleTaskTime()"
       ></i>
     </button>
