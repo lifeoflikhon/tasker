@@ -1,0 +1,33 @@
+<div class="mb-4 flex items-center justify-between">
+  <div>
+    <h4 class="font-bold">{{!isBlocker ? 'Regular' : 'Blocker'}} Tasks</h4>
+  </div>
+
+  <div>
+    <button (click)="filterByStatus(Status.Past)" class="border-b border-gray-50 px-4 py-2" [ngClass]="{'border-gray-500': status == Status.Past}">Past</button>
+    <button (click)="filterByStatus(Status.Today)" class="border-b border-gray-50 px-4 py-2" [ngClass]="{'border-gray-500': status == Status.Today}">Today</button>
+    <button (click)="filterByStatus(Status.Upcoming)" class="border-b border-gray-50 px-4 py-2" *ngIf="!isBlocker" [ngClass]="{'border-gray-500': status == Status.Upcoming}">Upcoming</button>
+  </div>
+</div>
+
+<div>
+  <div (click)="toggleCollapsed()" class="hover:cursor-pointer flex items-center justify-between">
+    <div class="mb-2 font-medium flex items-center space-x-2">
+      <i class="fas fa-chevron-down"></i>
+<!--      <i class="fas fa-chevron-right"></i>-->
+      <h5>To-Do</h5>
+    </div>
+
+    <p>4</p>
+  </div>
+
+  <div class="grid gap-2">
+    <tasker-task></tasker-task>
+    <tasker-task></tasker-task>
+    <tasker-task></tasker-task>
+    <tasker-task></tasker-task>
+    <tasker-task></tasker-task>
+    <tasker-task></tasker-task>
+    <tasker-task></tasker-task>
+  </div>
+</div>
