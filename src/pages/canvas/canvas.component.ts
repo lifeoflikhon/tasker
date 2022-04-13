@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Task } from './layout/tasks/tasks.component';
 
 export enum Status {
   Past = 'past',
@@ -13,6 +14,7 @@ export enum Status {
   styleUrls: ['./canvas.component.scss']
 })
 export class CanvasComponent implements OnInit {
+  tasks: Task[] = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
