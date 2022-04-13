@@ -3,17 +3,4 @@
 @tailwind utilities;
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Montserrat, sans-serif; }
-
-.mat-menu-item {
-  line-height: unset !important;
-  height: unset !important;
-  padding: 4px 16px !important;
-  font-family: unset !important;
-  font-size: unset !important;
-}
-
-.mat-elevation-z4 {
-  box-shadow: unset;
-  @apply shadow-lg;
-}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
