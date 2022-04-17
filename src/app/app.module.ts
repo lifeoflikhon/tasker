@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
+import { taskReducer } from './store/reducers/task.reducer';
+import { TaskEffect } from './store/effects/task.effect';
 
 @NgModule({
   declarations: [
@@ -16,8 +18,10 @@ import { EffectsModule } from '@ngrx/effects';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({}),
-    EffectsModule.forRoot([]),
+    StoreModule.forRoot({
+      tasks: taskReducer
+    }),
+    EffectsModule.forRoot([TaskEffect]),
     HttpClientModule
   ],
   providers: [],

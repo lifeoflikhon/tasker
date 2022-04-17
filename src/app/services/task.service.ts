@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Task } from '../entities';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
-import { isToday, isPast, isFuture, differenceInMinutes } from 'date-fns';
+import { isToday, isPast, isFuture, differenceInMinutes, parseISO } from 'date-fns';
 
 @Injectable( {
   providedIn: 'root'
@@ -19,21 +19,21 @@ export class TaskService {
   getPast(): Observable<Task[]> {
     return this.http.get<Task[]>( this.endpoint )
       .pipe(
-        map((tasks) => tasks.filter((task) => isPast(task.createdOn)))
+        map((tasks) => tasks.filter((task) => isPast(parseISO(task.createdOn))))
       );
   }
 
   getToday(): Observable<Task[]> {
     return this.http.get<Task[]>( this.endpoint )
       .pipe(
-        map((tasks) => tasks.filter((task) => isToday(task.createdOn)))
+        map((tasks) => tasks.filter((task) => isToday(parseISO(task.createdOn))))
       );
   }
 
   getUpcoming(): Observable<Task[]> {
     return this.http.get<Task[]>( this.endpoint )
       .pipe(
-        map((tasks) => tasks.filter((task) => isFuture(task.createdOn)))
+        map((tasks) => tasks.filter((task) => isFuture(parseISO(task.createdOn))))
       );
   }
 
@@ -70,7 +70,7 @@ export class TaskService {
     const modifiedTask: Task = {
       ...newTask,
       title: `${task.title} (copy)`,
-      createdOn: new Date(),
+      createdOn: new Date().toISOString(),
       isCompleted: false
     }
 

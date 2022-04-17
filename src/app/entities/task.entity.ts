@@ -12,7 +12,7 @@ export class Task {
   estimatedTime?: number = 0; // minutes
   spentTime?: number = 0; // minutes
   remindBefore?: number = 0; // minutes
-  createdOn?: Date = new Date();
+  createdOn?: string = new Date().toISOString();
   isCompleted?: boolean = false;
   isRunning?: boolean = false;
   isBlocker?: boolean = false;
