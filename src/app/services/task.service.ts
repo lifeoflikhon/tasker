@@ -9,7 +9,7 @@ import { isToday, isPast, isFuture, differenceInMinutes } from 'date-fns';
 } )
 export class TaskService {
 
-  private readonly endpoint: string = '/tasks';
+  private readonly endpoint: string = 'http://localhost:3001/tasks';
 
   constructor(
     private http: HttpClient

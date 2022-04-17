@@ -1,5 +1,6 @@
 import { reducer, TaskState } from './reducers/task.reducer';
 import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
+import { getPastTasks } from './actions';
 
 export interface State {
   task: TaskState;
