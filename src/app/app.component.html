@@ -1,1 +1,15 @@
 <router-outlet></router-outlet>
+
+<div class="container mx-auto p-8">
+  <!-- components-->
+  <tasker-text-with-icon iconName="folder" label="Project"></tasker-text-with-icon>
+  <tasker-text-with-icon iconName="table-columns" label="Dashboard"></tasker-text-with-icon>
+  <tasker-text-with-icon iconName="memo-circle-check" label="My Tasks"></tasker-text-with-icon>
+  <tasker-text-with-icon iconName="cog" label="Settings"></tasker-text-with-icon>
+
+  <button class="border border-gray-600 rounded px-3 py-1">
+    <tasker-text-with-icon iconName="plus" label="Add New Task"></tasker-text-with-icon>
+  </button>
+
+  <tasker-task [task]="task"></tasker-task>
+</div>

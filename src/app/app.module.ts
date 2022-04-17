@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { taskReducer } from './store/reducers/task.reducer';
 import { TaskEffect } from './store/effects/task.effect';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -18,11 +19,12 @@ import { TaskEffect } from './store/effects/task.effect';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({
+    StoreModule.forRoot( {
       tasks: taskReducer
-    }),
-    EffectsModule.forRoot([TaskEffect]),
-    HttpClientModule
+    } ),
+    EffectsModule.forRoot( [ TaskEffect ] ),
+    HttpClientModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

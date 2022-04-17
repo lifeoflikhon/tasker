@@ -1,0 +1,22 @@
+<div class="flex items-center p-4 bg-gray-50 rounded relative overflow-hidden">
+  <div class="flex items-center space-x-4 flex-1">
+    <input type="checkbox" [disabled]="task.isBlocker" class="rounded disabled:bg-gray-200 disabled:cursor-not-allowed">
+
+    <div (click)="view.emit()" class="hover:cursor-pointer flex-1">
+      <h5 class="font-bold">{{task.title}}</h5>
+      <small><span class="font-bold">E: </span> {{task.estimatedTime || 0}} <span class="font-bold">S: </span> {{task.spentTime || 0}}</small>
+    </div>
+  </div>
+
+  <div class="flex items-center space-x-2 ml-4 min-w-max">
+    <button *ngIf="!task.isRunning" (click)="start.emit()"><i class="fal fa-play"></i></button>
+    <button *ngIf="task.isRunning" (click)="stop.emit()"><i class="fal fa-pause"></i></button>
+    <button><i class="fal fa-ellipsis-h"></i></button>
+  </div>
+
+  <div class="w-2 h-8 rounded absolute -left-1" [ngClass]="{
+    'bg-black': !task.isCompleted && !task.isBlocker,
+    'bg-red-600': task.isBlocker,
+    'bg-green-600': task.isCompleted
+  }"></div>
+</div>
