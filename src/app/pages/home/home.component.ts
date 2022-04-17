@@ -1,10 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { getTasks } from '../../store';
 import { Task } from '../../entities';
 import { SubSink } from 'subsink';
 import { Observable } from 'rxjs';
-import { getPastTasks } from '../../store/actions';
 
 @Component({
   selector: 'tasker-home',
@@ -12,7 +10,7 @@ import { getPastTasks } from '../../store/actions';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  public tasks$: Observable<Task[]> = this.store.select(getTasks);
+  public tasks$: Observable<Task[]>;
   private subs: SubSink = new SubSink();
 
   constructor(
