@@ -8,6 +8,7 @@ import { StoreModule } from '@ngrx/store';
 import { HttpClientModule } from '@angular/common/http';
 import { reducers } from './store';
 import { EffectsModule } from '@ngrx/effects';
+import { TaskEffects } from './store/effects';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { EffectsModule } from '@ngrx/effects';
     AppRoutingModule,
     BrowserAnimationsModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([TaskEffects]),
     HttpClientModule
   ],
   providers: [],
