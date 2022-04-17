@@ -3,6 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TaskService } from '../../services/task.service';
 import { getPastTasks, getTodayTasks, getUpcomingTasks } from '../actions';
 import { exhaustMap, map } from 'rxjs';
+import { getTasks } from '../index';
 
 @Injectable()
 export class TaskEffects {
