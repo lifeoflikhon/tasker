@@ -12,6 +12,10 @@ const routes: Routes = [
         loadChildren: () => import('./../dashboard/dashboard.module').then(m => m.DashboardModule)
       },
       {
+        path: 'tasks',
+        loadChildren: () => import('./../task-detail/task-detail.module').then(m => m.TaskDetailModule)
+      },
+      {
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full'

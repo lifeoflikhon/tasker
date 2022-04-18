@@ -38,49 +38,56 @@
 
       <div *ngIf="nonBlockingTasks | getIncompleted as inCompletedTasks" class="mb-4">
         <h4 class="mb-2">To Do ({{inCompletedTasks.length}})</h4>
-        <tasker-task *ngFor="let task of inCompletedTasks"
-                     [task]="task"
-                     (start)="start(task)"
-                     (stop)="stop(task)"
-                     (view)="view(task)"
-                     (block)="block(task)"
-                     (active)="active(task)"
-                     (inactive)="inactive(task)"
-                     (complete)="complete(task)"
-                     (delete)="delete(task)"
-                     (duplicate)="duplicate(task)"
-        ></tasker-task>
+        <div class="grid gap-1">
+          <tasker-task *ngFor="let task of inCompletedTasks"
+                       [task]="task"
+                       (start)="start(task)"
+                       (stop)="stop(task)"
+                       (view)="view(task)"
+                       (block)="block(task)"
+                       (active)="active(task)"
+                       (inactive)="inactive(task)"
+                       (complete)="complete(task)"
+                       (delete)="delete(task)"
+                       (duplicate)="duplicate(task)"
+          ></tasker-task>
 
-        <tasker-new-task (create)="create($event)" *ngIf="onCreationMode"></tasker-new-task>
+          <tasker-new-task (create)="create($event)" *ngIf="onCreationMode"></tasker-new-task>
+
+        </div>
       </div>
 
       <div *ngIf="nonBlockingTasks | getCompleted as completedTasks" class="mb-4">
         <h4 class="mb-2">Completed ({{completedTasks.length}})</h4>
-        <tasker-task *ngFor="let task of completedTasks"
-                     [task]="task"
-                     (view)="view(task)"
-                     (block)="block(task)"
-                     (active)="active(task)"
-                     (inactive)="inactive(task)"
-                     (inComplete)="inComplete(task)"
-                     (delete)="delete(task)"
-                     (duplicate)="duplicate(task)"
-        ></tasker-task>
+        <div class="grid gap-1">
+          <tasker-task *ngFor="let task of completedTasks"
+                       [task]="task"
+                       (view)="view(task)"
+                       (block)="block(task)"
+                       (active)="active(task)"
+                       (inactive)="inactive(task)"
+                       (inComplete)="inComplete(task)"
+                       (delete)="delete(task)"
+                       (duplicate)="duplicate(task)"
+          ></tasker-task>
+        </div>
       </div>
     </div>
 
     <ng-container *ngIf="activeTime !== timeframesEnum.Upcoming">
       <div class="md:border-l md:border-dashed md:border-gray-200 md:pl-4" *ngIf="tasks | getBlocker as blockingTasks">
         <h3 class="mb-2 font-bold text-base text-red-700">Blocker Tasks ({{blockingTasks.length}})</h3>
-        <tasker-task *ngFor="let task of blockingTasks"
-                     [task]="task"
-                     (view)="view(task)"
-                     (unblock)="unblock(task)"
-                     (active)="active(task)"
-                     (inactive)="inactive(task)"
-                     (delete)="delete(task)"
-                     (duplicate)="duplicate(task)"
-        ></tasker-task>
+        <div class="grid gap-1">
+          <tasker-task *ngFor="let task of blockingTasks"
+                       [task]="task"
+                       (view)="view(task)"
+                       (unblock)="unblock(task)"
+                       (active)="active(task)"
+                       (inactive)="inactive(task)"
+                       (delete)="delete(task)"
+                       (duplicate)="duplicate(task)"
+          ></tasker-task>
+        </div>
       </div>
     </ng-container>
   </div>

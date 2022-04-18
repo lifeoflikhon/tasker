@@ -4,11 +4,13 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Task } from 'src/app/entities';
 import {
+  activeTask,
+  blockTask,
   completeTask,
-  createTask, incompleteTask,
+  createTask, deleteTask, duplicateTask, inactiveTask, incompleteTask,
   loadPastTasks,
   loadTodayTasks,
-  loadUpcomingTasks
+  loadUpcomingTasks, unblockTask
 } from 'src/app/store/actions/task.action';
 import { selectAllTasks } from 'src/app/store/selectors/task.selector';
 import { SubSink } from 'subsink';
@@ -36,7 +38,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   public timeframes = TIMEFRAMES;
   public timeframesEnum = timeframes;
-  public activeTime: string = timeframes.Past;
+  public activeTime: string = timeframes.Today;
   public onCreationMode: boolean = false;
 
   constructor(
@@ -101,23 +103,23 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   view( task: Task ) {
-
+    this.router.navigate(['/tasks', task.id]);
   }
 
   unblock( task: Task ) {
-
+    this.store.dispatch(unblockTask({ task }));
   }
 
   block( task: Task ) {
-
+    this.store.dispatch(blockTask({ task }));
   }
 
   active( task: Task ) {
-
+    this.store.dispatch(activeTask({ task }));
   }
 
   inactive( task: Task ) {
-
+    this.store.dispatch(inactiveTask({ task }));
   }
 
   complete( task: Task ) {
@@ -129,11 +131,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   delete( task: Task ) {
-
+    this.store.dispatch( deleteTask({ task }));
   }
 
   duplicate( task: Task ) {
-
+    this.store.dispatch(duplicateTask({ task }));
   }
 
   addNewTask() {

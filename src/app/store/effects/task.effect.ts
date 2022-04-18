@@ -4,13 +4,29 @@ import { AppState } from '../app-state';
 import { Store } from '@ngrx/store';
 import { TaskService } from '../../services/task.service';
 import {
-  completeTask, completeTaskFailure, completeTaskSuccess,
-  createTask, createTaskFailure, createTaskSuccess, incompleteTask, incompleteTaskFailure, incompleteTaskSuccess,
+  activeTask,
+  activeTaskFailure,
+  activeTaskSuccess,
+  blockTask, blockTaskFailure, blockTaskSuccess,
+  completeTask,
+  completeTaskFailure,
+  completeTaskSuccess,
+  createTask,
+  createTaskFailure,
+  createTaskSuccess, deleteTask, deleteTaskFailure, deleteTaskSuccess,
+  duplicateTask, duplicateTaskFailure, duplicateTaskSuccess, inactiveTask, inactiveTaskFailure, inactiveTaskSuccess,
+  incompleteTask,
+  incompleteTaskFailure,
+  incompleteTaskSuccess,
   loadPastTasks,
   loadPastTasksFailure,
   loadPastTasksSuccess,
-  loadTodayTasks, loadTodayTasksFailure,
-  loadTodayTasksSuccess, loadUpcomingTasks, loadUpcomingTasksFailure, loadUpcomingTasksSuccess
+  loadTodayTasks,
+  loadTodayTasksFailure,
+  loadTodayTasksSuccess,
+  loadUpcomingTasks,
+  loadUpcomingTasksFailure,
+  loadUpcomingTasksSuccess, unblockTask, unblockTaskFailure, unblockTaskSuccess
 } from '../actions/task.action';
 import { catchError, map, of, switchMap } from 'rxjs';
 
@@ -54,6 +70,14 @@ export class TaskEffect {
     ) )
   ))
 
+  duplicateTask$ = createEffect(() => this.actions$.pipe(
+    ofType(duplicateTask),
+    switchMap(({ task }) => this.taskService.duplicate(task).pipe(
+      map((task) => duplicateTaskSuccess({ task })),
+      catchError((error) => of(duplicateTaskFailure({ error })))
+    ) )
+  ))
+
   completeTask$ = createEffect(() => this.actions$.pipe(
     ofType(completeTask),
     switchMap(({ task }) => this.taskService.toggleComplete(task).pipe(
@@ -67,6 +91,46 @@ export class TaskEffect {
     switchMap(({ task }) => this.taskService.toggleComplete(task).pipe(
       map((task) => incompleteTaskSuccess({ task })),
       catchError((error) => of(incompleteTaskFailure({ error })))
+    ) )
+  ))
+
+  deleteTask$ = createEffect(() => this.actions$.pipe(
+    ofType(deleteTask),
+    switchMap(({ task }) => this.taskService.delete(task).pipe(
+      map((task) => deleteTaskSuccess({ task })),
+      catchError((error) => of(deleteTaskFailure({ error })))
+    ) )
+  ))
+
+  blockTask$ = createEffect(() => this.actions$.pipe(
+    ofType(blockTask),
+    switchMap(({ task }) => this.taskService.toggleBlock(task).pipe(
+      map((task) => blockTaskSuccess({ task })),
+      catchError((error) => of(blockTaskFailure({ error })))
+    ) )
+  ))
+
+  unblockTask$ = createEffect(() => this.actions$.pipe(
+    ofType(unblockTask),
+    switchMap(({ task }) => this.taskService.toggleBlock(task).pipe(
+      map((task) => unblockTaskSuccess({ task })),
+      catchError((error) => of(unblockTaskFailure({ error })))
+    ) )
+  ))
+
+  activeTask$ = createEffect(() => this.actions$.pipe(
+    ofType(activeTask),
+    switchMap(({ task }) => this.taskService.toggleActive(task).pipe(
+      map((task) => activeTaskSuccess({ task })),
+      catchError((error) => of(activeTaskFailure({ error })))
+    ) )
+  ))
+
+  inactiveTask$ = createEffect(() => this.actions$.pipe(
+    ofType(inactiveTask),
+    switchMap(({ task }) => this.taskService.toggleActive(task).pipe(
+      map((task) => inactiveTaskSuccess({ task })),
+      catchError((error) => of(inactiveTaskFailure({ error })))
     ) )
   ))
 }

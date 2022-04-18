@@ -9,8 +9,10 @@
   </div>
 
   <div class="flex items-center space-x-2 ml-4 min-w-max">
-    <button *ngIf="!task.isRunning" (click)="start.emit()"><i class="fal fa-play"></i></button>
-    <button *ngIf="task.isRunning" (click)="stop.emit()"><i class="fal fa-pause"></i></button>
+    <ng-container *ngIf="task.isActive">
+      <button *ngIf="!task.isRunning" (click)="start.emit()"><i class="fal fa-play"></i></button>
+      <button *ngIf="task.isRunning" (click)="stop.emit()"><i class="fal fa-pause"></i></button>
+    </ng-container>
     <button [matMenuTriggerFor]="menu"><i class="fal fa-ellipsis-h"></i></button>
   </div>
 
