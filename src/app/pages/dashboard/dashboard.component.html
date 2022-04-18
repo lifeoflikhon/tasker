@@ -1,10 +1,33 @@
-<div>
-  <button (click)="getPastTasks()">Past</button>
-  <button (click)="getTodayTasks()">Today</button>
-  <button (click)="getUpcomingTasks()">Upcoming</button>
-  <p>{{tasks$ | async | json}}</p>
+<div class="border-b border-gray-100 h-12 flex items-center justify-between px-6">
+  <div class="flex items-center">
+    <i class="fal fa-search"></i>
+    <input type="search" placeholder="Search" class="focus:outline-none focus:ring-0 border-0 text-xs placeholder-gray-400">
+  </div>
+
+  <div class="flex items-center space-x-2">
+    <span>John</span>
+    <div class="w-6 h-6 grid place-items-center aspect-square rounded-full bg-gray-50">
+      <i class="fal fa-user"></i>
+    </div>
+  </div>
 </div>
 
-<div>
-  <p>{{tasks$ | async | json}}</p>
+<div class="w-11/12 mx-auto py-4 flex items-center justify-between">
+  <h2 class="font-medium text-lg">Good morning, John</h2>
+  <button class="animate-pulse"><i class="fal fa-bell"></i></button>
+</div>
+
+<div  class="w-11/12 mx-auto">
+
+  <div class="flex">
+    <button *ngFor="let timeframe of timeframes" class="border-b border-gray-50 px-3 py-2" (click)="goToTime(timeframe.id)" [ngClass]="{'border-gray-500': activeTime === timeframe.id}">{{timeframe.name}}</button>
+  </div>
+
+  <div>
+    <p>{{tasks$ | async | json}}</p>
+  </div>
+  
+  <div>
+    <p>{{tasks$ | async | json}}</p>
+  </div>
 </div>
