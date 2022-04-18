@@ -4,6 +4,7 @@ import { AppState } from '../app-state';
 import { Store } from '@ngrx/store';
 import { TaskService } from '../../services/task.service';
 import {
+  completeTask, completeTaskFailure, completeTaskSuccess,
   createTask, createTaskFailure, createTaskSuccess,
   loadPastTasks,
   loadPastTasksFailure,
@@ -50,6 +51,14 @@ export class TaskEffect {
     switchMap(({ task }) => this.taskService.create(task).pipe(
       map((task) => createTaskSuccess({ task })),
       catchError((error) => of(createTaskFailure({ error })))
+    ) )
+  ))
+
+  completeTask$ = createEffect(() => this.actions$.pipe(
+    ofType(completeTask),
+    switchMap(({ task }) => this.taskService.toggleComplete(task).pipe(
+      map((task) => completeTaskSuccess({ task })),
+      catchError((error) => of(completeTaskFailure({ error })))
     ) )
   ))
 }

@@ -36,8 +36,8 @@
         </button>
       </div>
 
-      <div *ngIf="nonBlockingTasks | getIncompleted as inCompletedTasks">
-        <h4>To Do ({{inCompletedTasks.length}})</h4>
+      <div *ngIf="nonBlockingTasks | getIncompleted as inCompletedTasks" class="mb-4">
+        <h4 class="mb-2">To Do ({{inCompletedTasks.length}})</h4>
         <tasker-task *ngFor="let task of inCompletedTasks"
                      [task]="task"
                      (start)="start(task)"
@@ -54,8 +54,8 @@
         <tasker-new-task (create)="create($event)" *ngIf="onCreationMode"></tasker-new-task>
       </div>
 
-      <div *ngIf="nonBlockingTasks | getCompleted as completedTasks">
-        <h4>Completed ({{completedTasks.length}})</h4>
+      <div *ngIf="nonBlockingTasks | getCompleted as completedTasks" class="mb-4">
+        <h4 class="mb-2">Completed ({{completedTasks.length}})</h4>
         <tasker-task *ngFor="let task of completedTasks"
                      [task]="task"
                      (view)="view(task)"

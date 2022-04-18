@@ -16,3 +16,7 @@ export const loadUpcomingTasksFailure = createAction( '[Task] Load Upcoming Task
 export const createTask = createAction( '[Task] Create Task', props<{ task: Task }>() );
 export const createTaskSuccess = createAction( '[Task] Create Task Success', props<{ task: Task }>() );
 export const createTaskFailure = createAction( '[Task] Create Task Failure', props<{ error: any }>() );
+
+export const completeTask = createAction( '[Task] Complete Task', props<{ task: Task }>() );
+export const completeTaskSuccess = createAction( '[Task] Complete Task Success', props<{ task: Task }>() );
+export const completeTaskFailure = createAction( '[Task] Complete Task Failure', props<{ error: any }>() );

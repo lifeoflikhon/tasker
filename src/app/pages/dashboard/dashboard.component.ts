@@ -3,7 +3,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Task } from 'src/app/entities';
-import { createTask, loadPastTasks, loadTodayTasks, loadUpcomingTasks } from 'src/app/store/actions/task.action';
+import {
+  completeTask,
+  createTask,
+  loadPastTasks,
+  loadTodayTasks,
+  loadUpcomingTasks
+} from 'src/app/store/actions/task.action';
 import { selectAllTasks } from 'src/app/store/selectors/task.selector';
 import { SubSink } from 'subsink';
 
@@ -115,7 +121,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   complete( task: Task ) {
-
+    this.store.dispatch(completeTask({ task }));
   }
 
   inComplete( task: Task ) {

@@ -113,32 +113,32 @@ export class TaskService {
   }
 
   private markAsInactive( task: Task ): Observable<Task> {
-    task.isActive = false;
-    return this.edit( task );
+    const updatedTask: Task = { ...task, isActive: false, };
+    return this.edit( updatedTask );
   }
 
   private markAsActive( task: Task ): Observable<Task> {
-    task.isActive = true;
-    return this.edit( task );
+    const updatedTask: Task = { ...task, isActive: true, };
+    return this.edit( updatedTask );
   }
 
   private markAsCompleted( task: Task ): Observable<Task> {
-    task.isCompleted = true;
-    return this.edit( task );
+    const updatedTask: Task = { ...task, isCompleted: true, };
+    return this.edit( updatedTask );
   }
 
   private markAsUncompleted( task: Task ): Observable<Task> {
-    task.isCompleted = false;
-    return this.edit( task );
+    const updatedTask: Task = { ...task, isCompleted: false, };
+    return this.edit( updatedTask );
   }
 
   private markAsBlocker(task: Task): Observable<Task> {
-    task.isBlocker = true;
-    return this.edit( task );
+    const updatedTask: Task = { ...task, isBlocker: true, };
+    return this.edit( updatedTask );
   }
 
   private markAsNonBlocker(task: Task): Observable<Task> {
-    task.isBlocker = false;
-    return this.edit( task );
+    const updatedTask: Task = { ...task, isBlocker: false, };
+    return this.edit( updatedTask );
   }
 }
