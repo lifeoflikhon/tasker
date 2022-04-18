@@ -2,7 +2,7 @@ import { Task } from '../../entities';
 import { createReducer, on } from '@ngrx/store';
 import {
   completeTask, completeTaskFailure, completeTaskSuccess,
-  createTask, createTaskFailure, createTaskSuccess,
+  createTask, createTaskFailure, createTaskSuccess, incompleteTask, incompleteTaskFailure, incompleteTaskSuccess,
   loadPastTasks,
   loadPastTasksFailure,
   loadPastTasksSuccess,
@@ -49,4 +49,9 @@ export const taskReducer = createReducer(
   on(completeTask, ( state) => ({ ...state, status: 'loading', })),
   on(completeTaskSuccess, (state, { task }) => ({ ...state, tasks: state.tasks.map(t => t.id === task.id ? task : t), status: 'success', error: null })),
   on(completeTaskFailure, ( state, { error }) => ({ ...state, status: 'error', error })),
+
+  // incomplete task
+  on(incompleteTask, ( state) => ({ ...state, status: 'loading', })),
+  on(incompleteTaskSuccess, (state, { task }) => ({ ...state, tasks: state.tasks.map(t => t.id === task.id ? task : t), status: 'success', error: null })),
+  on(incompleteTaskFailure, ( state, { error }) => ({ ...state, status: 'error', error })),
 );

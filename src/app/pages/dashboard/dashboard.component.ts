@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { Task } from 'src/app/entities';
 import {
   completeTask,
-  createTask,
+  createTask, incompleteTask,
   loadPastTasks,
   loadTodayTasks,
   loadUpcomingTasks
@@ -125,7 +125,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   inComplete( task: Task ) {
-
+    this.store.dispatch(incompleteTask({ task }));
   }
 
   delete( task: Task ) {

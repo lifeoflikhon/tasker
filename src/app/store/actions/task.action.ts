@@ -20,3 +20,7 @@ export const createTaskFailure = createAction( '[Task] Create Task Failure', pro
 export const completeTask = createAction( '[Task] Complete Task', props<{ task: Task }>() );
 export const completeTaskSuccess = createAction( '[Task] Complete Task Success', props<{ task: Task }>() );
 export const completeTaskFailure = createAction( '[Task] Complete Task Failure', props<{ error: any }>() );
+
+export const incompleteTask = createAction( '[Task] Incomplete Task', props<{ task: Task }>() );
+export const incompleteTaskSuccess = createAction( '[Task] Incomplete Task Success', props<{ task: Task }>() );
+export const incompleteTaskFailure = createAction( '[Task] Incomplete Task Failure', props<{ error: any }>() );
