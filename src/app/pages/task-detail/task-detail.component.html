@@ -1,7 +1,7 @@
 <ng-container *ngIf="task$ | async as task">
   <div class="border-b border-gray-100 h-12 flex items-center justify-between px-6">
     <div class="flex items-center space-x-4">
-      <button><i class="fal fa-chevron-left"></i></button>
+      <button (click)="back()"><i class="fal fa-chevron-left"></i></button>
       <div>
         <h1 class="font-bold text-base">{{task.title}}</h1>
         <p>{{task.createdOn | date}}</p>
@@ -22,7 +22,15 @@
     </div>
   </div>
 
-  <div class="p-4">
-    {{task | json}}
+  <div class="p-4 grid gap-2">
+    <div class="flex items-center">
+      <p class="w-24">ID:</p>
+      <p class="flex-1">{{task.id}}</p>
+    </div>
+
+    <div class="flex items-center">
+      <p class="w-24">Task Priority:</p>
+      <p class="flex-1">{{task.priority}}</p>
+    </div>
   </div>
 </ng-container>

@@ -29,4 +29,7 @@ export class TaskDetailComponent implements OnInit {
       });
   }
 
+  back() {
+    history.back();
+  }
 }
