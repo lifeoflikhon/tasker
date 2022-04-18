@@ -29,6 +29,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private subs: SubSink = new SubSink();
 
   public timeframes = TIMEFRAMES;
+  public timeframesEnum = timeframes;
   public activeTime: string = timeframes.Past;
 
   constructor(
