@@ -7,10 +7,16 @@ import { loadPastTasks, loadTodayTasks, loadUpcomingTasks } from 'src/app/store/
 import { selectAllTasks } from 'src/app/store/selectors/task.selector';
 import { SubSink } from 'subsink';
 
+enum timeframes {
+  Past = 'past',
+  Today = 'today',
+  Upcoming = 'upcoming'
+}
+
 const TIMEFRAMES = [
-  { name: 'Past', id: 'past' },
-  { name: 'Today', id: 'today' },
-  { name: 'Upcoming', id: 'upcoming' },
+  { name: 'Past', id: timeframes.Past },
+  { name: 'Today', id: timeframes.Today },
+  { name: 'Upcoming', id: timeframes.Upcoming },
 ];
 
 @Component({
@@ -23,7 +29,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private subs: SubSink = new SubSink();
 
   public timeframes = TIMEFRAMES;
-  public activeTime: string = 'past';
+  public activeTime: string = timeframes.Past;
 
   constructor(
     private readonly store: Store,
@@ -35,29 +41,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.activatedRoute.queryParams
       .subscribe(params => {
         const timeframe = params['time'];
-        
-        if (!timeframe) {
-          this.goToTime(this.activeTime);
-        } else {
-          this.activeTime = timeframe;
-        }
-
-        switch(timeframe) {
-          case 'past':
-            this.getPastTasks();
-            break;
-
-          case 'today':
-            this.getTodayTasks();
-            break;
-
-          case 'upcoming':
-            this.getUpcomingTasks();
-            break;
-        }
+        !timeframe ? this.goToTime(this.activeTime) : this.activeTime = timeframe;
+        this.handleDataLoad(timeframe);
     });
-
-    this.getPastTasks();
   }
 
   ngOnDestroy(): void {
@@ -80,6 +66,22 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.router.navigate(['/dashboard'], {
       queryParams: { time }
     });
+  }
+
+  handleDataLoad(time: string) {
+    switch(time) {
+      case timeframes.Past:
+        this.getPastTasks();
+        break;
+
+      case timeframes.Today:
+        this.getTodayTasks();
+        break;
+
+      case timeframes.Upcoming:
+        this.getUpcomingTasks();
+        break;
+    }
   }
 
 }

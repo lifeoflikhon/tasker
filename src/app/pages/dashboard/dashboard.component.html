@@ -23,11 +23,14 @@
     <button *ngFor="let timeframe of timeframes" class="border-b border-gray-50 px-3 py-2" (click)="goToTime(timeframe.id)" [ngClass]="{'border-gray-500': activeTime === timeframe.id}">{{timeframe.name}}</button>
   </div>
 
-  <div>
-    <p>{{tasks$ | async | json}}</p>
-  </div>
-  
-  <div>
-    <p>{{tasks$ | async | json}}</p>
+  <div class="grid grid-cols-2 gap-4 py-2" *ngIf="tasks$ | async as tasks">
+    <div>
+      <tasker-task *ngFor="let task of tasks" [task]="task"></tasker-task>
+    </div>
+    
+    <div>
+      <h3 class="mb-2 font-bold text-red-700">Blocker Tasks ({{tasks?.length}})</h3>
+      <tasker-task *ngFor="let task of tasks" [task]="task"></tasker-task>
+    </div>
   </div>
 </div>
