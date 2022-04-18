@@ -30,7 +30,45 @@
 
     <div class="flex items-center">
       <p class="w-24">Task Priority:</p>
-      <p class="flex-1">{{task.priority}}</p>
+      <select (change)="updatePriority($event, task)" class="flex-1 rounded text-xs border border-gray-300">
+        <option [selected]="task.priority === priority" *ngFor="let priority of priorities" [value]="priority">{{priority}}</option>
+      </select>
+    </div>
+
+    <div class="flex flex-col">
+      <p class="w-24">Task Details:</p>
+      <textarea (input)="updateDescription($event, task)" class="flex-1 text-xs border border-gray-300 rounded" [value]="task.description || ''"></textarea>
+    </div>
+
+    <div class="flex items-center" *ngIf="projects$ | async as projects">
+      <p class="w-24">Project:</p>
+      <select (change)="updateProject($event, task, projects)" class="flex-1 rounded text-xs border border-gray-300">
+        <option [selected]="task?.project?.id === project.id" *ngFor="let project of projects" [value]="project.id">{{project.name}}</option>
+      </select>
+    </div>
+
+    <div class="flex items-center">
+      <p class="w-24">Assignee:</p>
+      <select (change)="updateAssignee($event, task)" class="flex-1 rounded text-xs border border-gray-300">
+        <option [selected]="task?.assignee?.id === user.id" *ngFor="let user of users" [value]="user.id">{{user.name}}</option>
+      </select>
+    </div>
+
+    <div class="flex items-center">
+      <p class="w-24">Remind me:</p>
+      <select (change)="updateRemindBefore($event, task)" class="flex-1 rounded text-xs border border-gray-300">
+        <option *ngFor="let remindMeTime of remindMeTimes" [value]="remindMeTime">{{remindMeTime}} minutes</option>
+      </select>
+    </div>
+
+    <div class="flex items-center">
+      <p class="w-24">Time Tracking:</p>
+      <progress [max]="task.estimatedTime" [value]="task.spentTime"></progress>
+    </div>
+
+    <div class="flex items-center">
+      <p class="w-24">Repeat:</p>
+      <input type="checkbox" class="rounded">
     </div>
   </div>
 </ng-container>

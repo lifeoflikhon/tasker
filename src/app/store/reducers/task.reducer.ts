@@ -34,10 +34,10 @@ import {
   loadTodayTasksSuccess,
   loadUpcomingTasks,
   loadUpcomingTasksFailure,
-  loadUpcomingTasksSuccess,
+  loadUpcomingTasksSuccess, startTask, startTaskFailure, startTaskSuccess, stopTask, stopTaskFailure, stopTaskSuccess,
   unblockTask,
   unblockTaskFailure,
-  unblockTaskSuccess
+  unblockTaskSuccess, updateTask, updateTaskFailure, updateTaskSuccess
 } from '../actions/task.action';
 
 export interface TaskState {
@@ -119,4 +119,19 @@ export const taskReducer = createReducer(
   on(getTaskById, ( state) => ({ ...state, status: 'loading', })),
   on(getTaskByIdSuccess, (state, { task }) => ({ ...state, tasks: [task], status: 'success', error: null })),
   on(getTaskByIdFailure, ( state, { error }) => ({ ...state, status: 'error', error })),
+
+  // update task
+  on(updateTask, ( state) => ({ ...state, status: 'loading', })),
+  on(updateTaskSuccess, (state, { task }) => ({ ...state, tasks: state.tasks.map(t => t.id === task.id ? task : t), status: 'success', error: null })),
+  on(updateTaskFailure, ( state, { error }) => ({ ...state, status: 'error', error })),
+
+  // start task
+  on(startTask, ( state) => ({ ...state, status: 'loading', })),
+  on(startTaskSuccess, (state, { task }) => ({ ...state, tasks: state.tasks.map(t => t.id === task.id ? task : t), status: 'success', error: null })),
+  on(startTaskFailure, ( state, { error }) => ({ ...state, status: 'error', error })),
+
+  // stop task
+  on(stopTask, ( state) => ({ ...state, status: 'loading', })),
+  on(stopTaskSuccess, (state, { task }) => ({ ...state, tasks: state.tasks.map(t => t.id === task.id ? task : t), status: 'success', error: null })),
+  on(stopTaskFailure, ( state, { error }) => ({ ...state, status: 'error', error })),
 );

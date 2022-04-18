@@ -1,5 +1,1 @@
-export enum PriorityLevel {
-  Low = 1,
-  Medium,
-  High
-}
+export type PriorityLevel = 'Low' | 'Medium' | 'High';

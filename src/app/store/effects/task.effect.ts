@@ -37,10 +37,10 @@ import {
   loadTodayTasksSuccess,
   loadUpcomingTasks,
   loadUpcomingTasksFailure,
-  loadUpcomingTasksSuccess,
+  loadUpcomingTasksSuccess, startTask, startTaskFailure, startTaskSuccess, stopTask, stopTaskFailure, stopTaskSuccess,
   unblockTask,
   unblockTaskFailure,
-  unblockTaskSuccess
+  unblockTaskSuccess, updateTask, updateTaskFailure, updateTaskSuccess
 } from '../actions/task.action';
 import { catchError, map, of, switchMap } from 'rxjs';
 
@@ -155,4 +155,29 @@ export class TaskEffect {
       catchError((error) => of(getTaskByIdFailure({ error })))
     ) )
   ))
+
+  updateTask$ = createEffect(() => this.actions$.pipe(
+    ofType(updateTask),
+    switchMap(({ task }) => this.taskService.edit(task).pipe(
+      map((task) => updateTaskSuccess({ task })),
+      catchError((error) => of(updateTaskFailure({ error })))
+    ) )
+  ))
+
+  startTask$ = createEffect(() => this.actions$.pipe(
+    ofType(startTask),
+    switchMap(({ task }) => this.taskService.toggleRunningStatus(task).pipe(
+      map((task) => startTaskSuccess({ task })),
+      catchError((error) => of(startTaskFailure({ error })))
+    ) )
+  ))
+
+  stopTask$ = createEffect(() => this.actions$.pipe(
+    ofType(stopTask),
+    switchMap(({ task }) => this.taskService.toggleRunningStatus(task).pipe(
+      map((task) => stopTaskSuccess({ task })),
+      catchError((error) => of(stopTaskFailure({ error })))
+    ) )
+  ))
+
 }

@@ -17,6 +17,6 @@ export class Task {
   isRunning?: boolean = false;
   isBlocker?: boolean = false;
   isActive?: boolean = true;
-  startedOn?: Date;
-  stoppedOn?: Date;
+  startedOn?: string;
+  stoppedOn?: string;
 }

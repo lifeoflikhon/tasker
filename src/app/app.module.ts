@@ -10,6 +10,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { taskReducer } from './store/reducers/task.reducer';
 import { TaskEffect } from './store/effects/task.effect';
 import { SharedModule } from './shared/shared.module';
+import { projectReducer } from './store/reducers/project.reducer';
+import { ProjectEffects } from './store/effects/project.effect';
 
 @NgModule({
   declarations: [
@@ -20,9 +22,10 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     StoreModule.forRoot( {
-      tasks: taskReducer
+      tasks: taskReducer,
+      projects: projectReducer
     } ),
-    EffectsModule.forRoot( [ TaskEffect ] ),
+    EffectsModule.forRoot( [ TaskEffect, ProjectEffects ] ),
     HttpClientModule,
     SharedModule
   ],

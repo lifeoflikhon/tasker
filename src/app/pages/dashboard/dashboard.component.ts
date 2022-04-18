@@ -10,7 +10,7 @@ import {
   createTask, deleteTask, duplicateTask, inactiveTask, incompleteTask,
   loadPastTasks,
   loadTodayTasks,
-  loadUpcomingTasks, unblockTask
+  loadUpcomingTasks, startTask, stopTask, unblockTask
 } from 'src/app/store/actions/task.action';
 import { selectAllTasks } from 'src/app/store/selectors/task.selector';
 import { SubSink } from 'subsink';
@@ -95,11 +95,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   start( task: Task ) {
-
+    this.store.dispatch(startTask({ task }));
   }
 
   stop( task: Task ) {
-
+    this.store.dispatch(stopTask({ task }));
   }
 
   view( task: Task ) {

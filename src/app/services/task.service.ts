@@ -100,16 +100,22 @@ export class TaskService {
   }
 
   private start( task: Task ): Observable<Task> {
-    task.isRunning = true;
-    task.startedOn = new Date();
-    return this.edit( task );
+    const modifiedTask: Task = {
+      ...task,
+      isRunning: true,
+      startedOn: new Date().toISOString()
+    };
+    return this.edit( modifiedTask );
   }
 
   private stop( task: Task ): Observable<Task> {
-    task.isRunning = false;
-    task.stoppedOn = new Date();
-    task.spentTime += differenceInMinutes( task.stoppedOn, task.startedOn );
-    return this.edit( task );
+    const modifiedTask: Task = {
+      ...task,
+      isRunning: false,
+      stoppedOn: new Date().toISOString(),
+      spentTime: differenceInMinutes( parseISO( task.startedOn ), parseISO( task.stoppedOn ) )
+    };
+    return this.edit( modifiedTask );
   }
 
   private markAsInactive( task: Task ): Observable<Task> {

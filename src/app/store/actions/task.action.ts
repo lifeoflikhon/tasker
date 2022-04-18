@@ -52,3 +52,15 @@ export const inactiveTaskFailure = createAction( '[Task] Inactive Task Failure',
 export const getTaskById = createAction( '[Task] Get Task By Id', props<{ taskId: number }>() );
 export const getTaskByIdSuccess = createAction( '[Task] Get Task By Id Success', props<{ task: Task }>() );
 export const getTaskByIdFailure = createAction( '[Task] Get Task By Id Failure', props<{ error: any }>() );
+
+export const updateTask = createAction( '[Task] Update Task', props<{ task: Task }>() );
+export const updateTaskSuccess = createAction( '[Task] Update Task Success', props<{ task: Task }>() );
+export const updateTaskFailure = createAction( '[Task] Update Task Failure', props<{ error: any }>() );
+
+export const startTask = createAction( '[Task] Start Task', props<{ task: Task }>() );
+export const startTaskSuccess = createAction( '[Task] Start Task Success', props<{ task: Task }>() );
+export const startTaskFailure = createAction( '[Task] Start Task Failure', props<{ error: any }>() );
+
+export const stopTask = createAction( '[Task] Stop Task', props<{ task: Task }>() );
+export const stopTaskSuccess = createAction( '[Task] Stop Task Success', props<{ task: Task }>() );
+export const stopTaskFailure = createAction( '[Task] Stop Task Failure', props<{ error: any }>() );
