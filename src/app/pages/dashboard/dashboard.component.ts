@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Task } from 'src/app/entities';
-import { loadPastTasks, loadTodayTasks, loadUpcomingTasks } from 'src/app/store/actions/task.action';
+import { createTask, loadPastTasks, loadTodayTasks, loadUpcomingTasks } from 'src/app/store/actions/task.action';
 import { selectAllTasks } from 'src/app/store/selectors/task.selector';
 import { SubSink } from 'subsink';
 
@@ -31,6 +31,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public timeframes = TIMEFRAMES;
   public timeframesEnum = timeframes;
   public activeTime: string = timeframes.Past;
+  public onCreationMode: boolean = false;
 
   constructor(
     private readonly store: Store,
@@ -85,4 +86,56 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
   }
 
+  start( task: Task ) {
+
+  }
+
+  stop( task: Task ) {
+
+  }
+
+  view( task: Task ) {
+
+  }
+
+  unblock( task: Task ) {
+
+  }
+
+  block( task: Task ) {
+
+  }
+
+  active( task: Task ) {
+
+  }
+
+  inactive( task: Task ) {
+
+  }
+
+  complete( task: Task ) {
+
+  }
+
+  inComplete( task: Task ) {
+
+  }
+
+  delete( task: Task ) {
+
+  }
+
+  duplicate( task: Task ) {
+
+  }
+
+  addNewTask() {
+    this.onCreationMode = true;
+  }
+
+  create( $event: Task ) {
+    this.store.dispatch(createTask( { task: $event } ));
+    this.onCreationMode = false;
+  }
 }

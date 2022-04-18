@@ -1,0 +1,10 @@
+<div class="border border-gray-300 p-2 rounded shadow-sm">
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="grid gap-1">
+    <input type="text" formControlName="title" class="text-xs border-t-0 border-l-0 border-r-0 border-b-gray-300 focus:ring-0" placeholder="Enter task name">
+    <select formControlName="projectId" class="text-xs  border-t-0 border-l-0 border-r-0 border-b-gray-300 focus:ring-0">
+      <option value="0">Select Project</option>
+      <option value="1">Project 1</option>
+    </select>
+    <button class="bg-black text-white rounded py-2">Add Task</button>
+  </form>
+</div>

@@ -1,6 +1,7 @@
 import { Task } from '../../entities';
 import { createReducer, on } from '@ngrx/store';
 import {
+  createTask, createTaskFailure, createTaskSuccess,
   loadPastTasks,
   loadPastTasksFailure,
   loadPastTasksSuccess,
@@ -37,4 +38,9 @@ export const taskReducer = createReducer(
   on(loadUpcomingTasks, ( state) => ({ ...state, status: 'loading', })),
   on(loadUpcomingTasksSuccess, ( state, { tasks }) => ({ ...state, tasks, status: 'success', error: null })),
   on(loadUpcomingTasksFailure, ( state, { error }) => ({ ...state, status: 'error', error })),
+
+  // create task
+  on(createTask, ( state) => ({ ...state, status: 'loading', })),
+  on(createTaskSuccess, ( state, { task }) => ({ ...state, tasks: [...state.tasks, task], status: 'success', error: null })),
+  on(createTaskFailure, ( state, { error }) => ({ ...state, status: 'error', error })),
 );

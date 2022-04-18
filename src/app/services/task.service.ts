@@ -37,16 +37,20 @@ export class TaskService {
       );
   }
 
-  getTodo(tasks: Task[]): Task[] {
-    return tasks.filter((task) => !task.isCompleted && !task.isBlocker);
-  }
-
   getCompleted(tasks: Task[]): Task[] {
     return tasks.filter((task) => task.isCompleted);
   }
 
+  getInCompleted(tasks: Task[]): Task[] {
+    return tasks.filter((task) => !task.isCompleted);
+  }
+
   getBlocker(tasks: Task[]): Task[] {
     return tasks.filter((task) => task.isBlocker);
+  }
+
+  getNonBlocker(tasks: Task[]): Task[] {
+    return tasks.filter((task) => !task.isBlocker);
   }
 
   create( task: Task ): Observable<Task> {
