@@ -1,1 +1,28 @@
-<p>task-detail works!</p>
+<ng-container *ngIf="task$ | async as task">
+  <div class="border-b border-gray-100 h-12 flex items-center justify-between px-6">
+    <div class="flex items-center space-x-4">
+      <button><i class="fal fa-chevron-left"></i></button>
+      <div>
+        <h1 class="font-bold text-base">{{task.title}}</h1>
+        <p>{{task.createdOn | date}}</p>
+      </div>
+    </div>
+
+    <div class="flex items-center space-x-2">
+      <button class="flex items-center space-x-2" *ngIf="task.isActive && !task.isBlocker">
+        <i class="fal fa-play" *ngIf="!task.isRunning"></i>
+        <i class="fal fa-pause" *ngIf="task.isRunning"></i>
+        <span>{{task.spentTime}} / {{task.estimatedTime}}</span>
+      </button>
+
+      <div class="bg-black px-3 py-2 rounded text-white flex space-x-2 text-xs">
+        <input [checked]="task.isCompleted" [disabled]="!task.isActive || task.isBlocker" type="checkbox" class="rounded">
+        <label>Complete</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-4">
+    {{task | json}}
+  </div>
+</ng-container>

@@ -4,14 +4,25 @@ import {
   activeTask,
   activeTaskFailure,
   activeTaskSuccess,
-  blockTask, blockTaskFailure, blockTaskSuccess,
+  blockTask,
+  blockTaskFailure,
+  blockTaskSuccess,
   completeTask,
   completeTaskFailure,
   completeTaskSuccess,
   createTask,
   createTaskFailure,
-  createTaskSuccess, deleteTask, deleteTaskFailure, deleteTaskSuccess,
-  duplicateTask, duplicateTaskFailure, duplicateTaskSuccess, inactiveTask, inactiveTaskFailure, inactiveTaskSuccess,
+  createTaskSuccess,
+  deleteTask,
+  deleteTaskFailure,
+  deleteTaskSuccess,
+  duplicateTask,
+  duplicateTaskFailure,
+  duplicateTaskSuccess,
+  getTaskById, getTaskByIdFailure, getTaskByIdSuccess,
+  inactiveTask,
+  inactiveTaskFailure,
+  inactiveTaskSuccess,
   incompleteTask,
   incompleteTaskFailure,
   incompleteTaskSuccess,
@@ -23,7 +34,10 @@ import {
   loadTodayTasksSuccess,
   loadUpcomingTasks,
   loadUpcomingTasksFailure,
-  loadUpcomingTasksSuccess, unblockTask, unblockTaskFailure, unblockTaskSuccess
+  loadUpcomingTasksSuccess,
+  unblockTask,
+  unblockTaskFailure,
+  unblockTaskSuccess
 } from '../actions/task.action';
 
 export interface TaskState {
@@ -100,4 +114,9 @@ export const taskReducer = createReducer(
   on(inactiveTask, ( state) => ({ ...state, status: 'loading', })),
   on(inactiveTaskSuccess, (state, { task }) => ({ ...state, tasks: state.tasks.map(t => t.id === task.id ? task : t), status: 'success', error: null })),
   on(inactiveTaskFailure, ( state, { error }) => ({ ...state, status: 'error', error })),
+
+  // get task by id
+  on(getTaskById, ( state) => ({ ...state, status: 'loading', })),
+  on(getTaskByIdSuccess, (state, { task }) => ({ ...state, tasks: [task], status: 'success', error: null })),
+  on(getTaskByIdFailure, ( state, { error }) => ({ ...state, status: 'error', error })),
 );

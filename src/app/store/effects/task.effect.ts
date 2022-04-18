@@ -7,14 +7,25 @@ import {
   activeTask,
   activeTaskFailure,
   activeTaskSuccess,
-  blockTask, blockTaskFailure, blockTaskSuccess,
+  blockTask,
+  blockTaskFailure,
+  blockTaskSuccess,
   completeTask,
   completeTaskFailure,
   completeTaskSuccess,
   createTask,
   createTaskFailure,
-  createTaskSuccess, deleteTask, deleteTaskFailure, deleteTaskSuccess,
-  duplicateTask, duplicateTaskFailure, duplicateTaskSuccess, inactiveTask, inactiveTaskFailure, inactiveTaskSuccess,
+  createTaskSuccess,
+  deleteTask,
+  deleteTaskFailure,
+  deleteTaskSuccess,
+  duplicateTask,
+  duplicateTaskFailure,
+  duplicateTaskSuccess, getTaskById, getTaskByIdFailure,
+  getTaskByIdSuccess,
+  inactiveTask,
+  inactiveTaskFailure,
+  inactiveTaskSuccess,
   incompleteTask,
   incompleteTaskFailure,
   incompleteTaskSuccess,
@@ -26,7 +37,10 @@ import {
   loadTodayTasksSuccess,
   loadUpcomingTasks,
   loadUpcomingTasksFailure,
-  loadUpcomingTasksSuccess, unblockTask, unblockTaskFailure, unblockTaskSuccess
+  loadUpcomingTasksSuccess,
+  unblockTask,
+  unblockTaskFailure,
+  unblockTaskSuccess
 } from '../actions/task.action';
 import { catchError, map, of, switchMap } from 'rxjs';
 
@@ -131,6 +145,14 @@ export class TaskEffect {
     switchMap(({ task }) => this.taskService.toggleActive(task).pipe(
       map((task) => inactiveTaskSuccess({ task })),
       catchError((error) => of(inactiveTaskFailure({ error })))
+    ) )
+  ))
+
+  getTaskById$ = createEffect(() => this.actions$.pipe(
+    ofType(getTaskById),
+    switchMap(({ taskId }) => this.taskService.getById(taskId).pipe(
+      map((task) => getTaskByIdSuccess({ task })),
+      catchError((error) => of(getTaskByIdFailure({ error })))
     ) )
   ))
 }
