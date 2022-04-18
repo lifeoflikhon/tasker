@@ -1,0 +1,10 @@
+<div>
+  <button (click)="getPastTasks()">Past</button>
+  <button (click)="getTodayTasks()">Today</button>
+  <button (click)="getUpcomingTasks()">Upcoming</button>
+  <p>{{tasks$ | async | json}}</p>
+</div>
+
+<div>
+  <p>{{tasks$ | async | json}}</p>
+</div>

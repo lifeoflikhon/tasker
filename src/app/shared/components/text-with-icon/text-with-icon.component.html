@@ -1,5 +1,7 @@
-<p class="space-x-2 flex items-center">
-  <i *ngIf="!altIcon" class="fal fa-{{iconName}}"></i>
-  <i *ngIf="altIcon" class="fal fa-{{altIcon}}"></i>
-  <span>{{label}}</span>
-</p>
+<a [routerLink]="link">
+  <p class="space-x-2 flex items-center px-3 py-2" routerLinkActive="bg-gray-200">
+    <i *ngIf="!altIcon" class="fal fa-{{iconName}}"></i>
+    <i *ngIf="altIcon" class="fal fa-{{altIcon}}"></i>
+    <span>{{label}}</span>
+  </p>
+</a>

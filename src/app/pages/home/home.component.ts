@@ -11,32 +11,4 @@ import { loadPastTasks, loadTodayTasks, loadUpcomingTasks } from '../../store/ac
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, OnDestroy {
-  public tasks$: Observable<Task[]> = this.store.select(selectAllTasks);
-  private subs: SubSink = new SubSink();
-
-  constructor(
-    private readonly store: Store
-  ) { }
-
-  ngOnInit(): void {
-    this.getPastTasks();
-  }
-
-  ngOnDestroy(): void {
-    this.subs.unsubscribe();
-  }
-
-  getPastTasks(): void {
-    this.store.dispatch(loadPastTasks());
-  }
-
-  getTodayTasks(): void {
-    this.store.dispatch(loadTodayTasks());
-  }
-
-  getUpcomingTasks(): void {
-    this.store.dispatch(loadUpcomingTasks());
-  }
-
-}
+export class HomeComponent {}

@@ -9,6 +9,7 @@ export class TextWithIconComponent implements OnInit {
   @Input() label: string = '';
   @Input() iconName: string = 'folder';
   @Input() altIcon: string;
+  @Input() link: string;
 
   constructor() { }
 
