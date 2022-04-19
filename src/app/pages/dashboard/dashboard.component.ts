@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Task } from 'src/app/entities';
+import { Project, Task } from 'src/app/entities';
 import {
   activeTask,
   blockTask,
@@ -14,6 +14,8 @@ import {
 } from 'src/app/store/actions/task.action';
 import { selectAllTasks } from 'src/app/store/selectors/task.selector';
 import { SubSink } from 'subsink';
+import { selectAllProjects } from '../../store/selectors/project.selector';
+import { loadProjects } from '../../store/actions/project.action';
 
 enum timeframes {
   Past = 'past',
@@ -34,6 +36,8 @@ const TIMEFRAMES = [
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   public tasks$: Observable<Task[]> = this.store.select(selectAllTasks);
+  public projects$: Observable<Project[]> = this.store.select(selectAllProjects);
+
   private subs: SubSink = new SubSink();
 
   public timeframes = TIMEFRAMES;
@@ -54,6 +58,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
         !timeframe ? this.goToTime(this.activeTime) : this.activeTime = timeframe;
         this.handleDataLoad(timeframe);
     });
+
+    this.store.dispatch(loadProjects());
   }
 
   ngOnDestroy(): void {

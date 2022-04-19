@@ -1,5 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Task } from '../../../entities';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Project, Task } from '../../../entities';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class NewTaskComponent implements OnInit {
   @Output() create: EventEmitter<Task> = new EventEmitter<Task>();
+  @Input() projects: Project[] = [];
 
   taskForm: FormGroup;
 
@@ -28,11 +29,8 @@ export class NewTaskComponent implements OnInit {
       const task: Task = new Task();
       const formValue = this.taskForm.value;
       const newTask: Task = { ...task, ...formValue};
-
-      // find and bind project
-
+      newTask.project = this.projects.find(p => p.id === formValue.projectId);
       this.create.emit(newTask);
-
     }
   }
 

@@ -52,7 +52,7 @@
                        (duplicate)="duplicate(task)"
           ></tasker-task>
 
-          <tasker-new-task (create)="create($event)" *ngIf="onCreationMode"></tasker-new-task>
+          <tasker-new-task [projects]="projects$ | async" (create)="create($event)" *ngIf="onCreationMode"></tasker-new-task>
 
         </div>
       </div>
