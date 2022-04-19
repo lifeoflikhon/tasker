@@ -7,13 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
-import { taskReducer } from './store/reducers/task.reducer';
-import { TaskEffect } from './store/effects/task.effect';
-import { SharedModule } from './shared/shared.module';
-import { projectReducer } from './store/reducers/project.reducer';
-import { ProjectEffects } from './store/effects/project.effect';
 
-@NgModule({
+@NgModule( {
   declarations: [
     AppComponent
   ],
@@ -21,15 +16,12 @@ import { ProjectEffects } from './store/effects/project.effect';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot( {
-      tasks: taskReducer,
-      projects: projectReducer
-    } ),
-    EffectsModule.forRoot( [ TaskEffect, ProjectEffects ] ),
-    HttpClientModule,
-    SharedModule
+    StoreModule.forRoot( {} ),
+    EffectsModule.forRoot( [] ),
+    HttpClientModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
+  bootstrap: [ AppComponent ]
+} )
+export class AppModule {
+}
