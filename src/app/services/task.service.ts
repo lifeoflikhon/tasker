@@ -113,7 +113,7 @@ export class TaskService {
       ...task,
       isRunning: false,
       stoppedOn: new Date().toISOString(),
-      spentTime: task.spentTime + Math.abs(differenceInMinutes( parseISO( task.startedOn ), parseISO( task.stoppedOn ) ) )
+      spentTime: (task.spentTime || 0) + (Math.abs(differenceInMinutes( parseISO( task.startedOn ), parseISO( task.stoppedOn ) ) ) || 0)
     };
     return this.edit( modifiedTask );
   }

@@ -70,5 +70,10 @@
       <p class="w-24">Repeat:</p>
       <input type="checkbox" class="rounded">
     </div>
+
+    <div class="flex items-center">
+      <p class="w-24">Estimated:</p>
+      <input (input)="updateEstimatedTime($event, task)" [value]="task.estimatedTime" type="number" class="border border-gray-300 rounded text-xs">
+    </div>
   </div>
 </ng-container>

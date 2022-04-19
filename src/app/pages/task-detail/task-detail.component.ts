@@ -72,4 +72,10 @@ export class TaskDetailComponent implements OnInit {
     const updatedTask = { ...task, remindBefore };
     this.store.dispatch(updateTask({ task: updatedTask }));
   }
+
+  updateEstimatedTime( $event: any, task: Task ) {
+    const estimatedTime = +$event.target.value;
+    const updatedTask = { ...task, estimatedTime };
+    this.store.dispatch(updateTask({ task: updatedTask }));
+  }
 }
