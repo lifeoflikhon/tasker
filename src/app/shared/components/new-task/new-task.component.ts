@@ -29,7 +29,7 @@ export class NewTaskComponent implements OnInit {
       const task: Task = new Task();
       const formValue = this.taskForm.value;
       const newTask: Task = { ...task, ...formValue};
-      newTask.project = this.projects.find(p => p.id === formValue.projectId);
+      newTask.project = this.projects.find(p => p.id === +formValue.projectId);
       this.create.emit(newTask);
     }
   }
