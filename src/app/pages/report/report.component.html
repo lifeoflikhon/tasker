@@ -1,3 +1,6 @@
 <tasker-report-filter></tasker-report-filter>
-<tasker-report-exporter></tasker-report-exporter>
+<tasker-report-exporter (excel)="saveAsExcel()"
+                        (json)="saveAsJSON()"
+                        (pdf)="saveAsPDF()"
+></tasker-report-exporter>
 <tasker-report-table [tasks]="tasks$ | async"></tasker-report-table>

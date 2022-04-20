@@ -19,7 +19,7 @@ import { ReportExporterComponent } from './layouts/report-exporter/report-export
   ],
   imports: [
     CommonModule,
-    ReportRoutingModule
+    ReportRoutingModule,
   ]
 })
 export class ReportModule { }

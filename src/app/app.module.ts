@@ -20,7 +20,7 @@ import { LayoutsModule } from './layouts/layouts.module';
     StoreModule.forRoot( {} ),
     EffectsModule.forRoot( [] ),
     HttpClientModule,
-    LayoutsModule
+    LayoutsModule,
   ],
   providers: [],
   bootstrap: [ AppComponent ]

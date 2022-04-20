@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Task } from '../../../tasks/models';
 
 @Component({
@@ -9,9 +9,14 @@ import { Task } from '../../../tasks/models';
 export class ReportTableComponent implements OnInit {
   @Input() tasks: Task[];
 
+  @ViewChild('table') table: ElementRef<HTMLTableElement>;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  getTable(): HTMLTableElement {
+    return this.table.nativeElement;
+  }
 }
