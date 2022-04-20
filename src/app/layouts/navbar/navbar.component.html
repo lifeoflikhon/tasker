@@ -1,0 +1,16 @@
+<nav class="bg-gray-100 h-full w-10 sm:w-40">
+  <div class="h-12 border-b border-gray-200 flex items-center justify-center bg-gray-800 text-white">
+    <h1 class="font-bold text-xl flex items-center"><span>T</span><span class="hidden sm:block text-gray-500">asker</span></h1>
+  </div>
+
+  <ul>
+    <li *ngFor="let menu of menus">
+      <a [routerLink]="[menu.url]">
+        <button routerLinkActive="bg-gray-300 font-bold" class="w-full px-3 py-2 hover:bg-gray-200 flex items-center space-x-2">
+          <i routerLinkActive="fas" class="fal fa-{{menu.icon}}"></i>
+          <span class="hidden sm:block">{{menu.title}}</span>
+        </button>
+      </a>
+    </li>
+  </ul>
+</nav>

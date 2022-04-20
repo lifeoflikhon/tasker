@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
+import { LayoutsModule } from './layouts/layouts.module';
 
 @NgModule( {
   declarations: [
@@ -18,7 +19,8 @@ import { EffectsModule } from '@ngrx/effects';
     BrowserAnimationsModule,
     StoreModule.forRoot( {} ),
     EffectsModule.forRoot( [] ),
-    HttpClientModule
+    HttpClientModule,
+    LayoutsModule
   ],
   providers: [],
   bootstrap: [ AppComponent ]
