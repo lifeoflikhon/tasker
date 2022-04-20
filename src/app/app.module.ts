@@ -8,7 +8,7 @@ import { StoreModule } from '@ngrx/store';
 import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { LayoutsModule } from './layouts/layouts.module';
-import { authReducer, projectReducer, taskReducer, userReducer } from './store/reducers';
+import { authReducer, projectReducer, taskReducer } from './store/reducers';
 
 @NgModule( {
   declarations: [
@@ -22,7 +22,6 @@ import { authReducer, projectReducer, taskReducer, userReducer } from './store/r
       tasks: taskReducer,
       projects: projectReducer,
       auth: authReducer,
-      user: userReducer
     } ),
     EffectsModule.forRoot( [] ),
     HttpClientModule,
