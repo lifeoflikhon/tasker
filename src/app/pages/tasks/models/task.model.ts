@@ -1,7 +1,7 @@
 import { Project } from '../../projects/models';
 
 export interface Task {
-  id: number;
+  id: string;
   title: string;
   description?: string;
   url?: string;
