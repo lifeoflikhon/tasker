@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Task } from './entities';
 
 @Component({
   selector: 'tasker-root',
@@ -7,11 +6,4 @@ import { Task } from './entities';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  task: Task = {
-    title: 'Test 1',
-    estimatedTime: 1,
-    spentTime: 0,
-    isCompleted: false,
-    isBlocker: true
-  };
 }

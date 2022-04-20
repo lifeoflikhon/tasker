@@ -1,0 +1,41 @@
+
+  <table class="w-full text-left">
+    <thead>
+      <tr class="bg-gray-600 text-white">
+        <th>
+          <input type="checkbox">
+        </th>
+        <th>#</th>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Project</th>
+        <th>Progress</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <ng-container *ngFor="let taskGroup of tasks | groupTasksByDate; index as i">
+        <tr class="bg-gray-100 font-bold">
+          <td><input type="checkbox"></td>
+          <td colspan="6">{{taskGroup.date | date}}</td>
+        </tr>
+
+        <tr *ngFor="let task of taskGroup.tasks">
+          <td><input type="checkbox"></td>
+          <td><a [routerLink]="['/tasks', task.id]" class="font-bold text-indigo-700">#{{task.id}}</a></td>
+          <td><a [href]="task.url" target="_blank" class="font-bold">{{task.title}}</a></td>
+          <td>{{task.project.name}}</td>
+          <td><progress [max]="task.estimatedTime" [value]="task.spentTime"></progress></td>
+          <td>
+            <div>
+              <button><i class="fal fa-pencil"></i></button>
+              <button><i class="fal fa-trash"></i></button>
+            </div>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+
+    <tfoot></tfoot>
+  </table>
