@@ -1,15 +1,15 @@
-<section class="flex items-center justify-between p-4">
+<section class="flex flex-col md:flex-row items-center justify-between p-4">
   <h2 class="font-bold text-lg">Report</h2>
 
-  <form class="flex items-center space-x-4">
+  <form [formGroup]="filterForm" (ngSubmit)="filter.emit(filterForm.value)" class="flex items-center space-x-4">
     <div class="flex items-center space-x-2">
       <label class="font-bold">From</label>
-      <input type="date" class="border-l-0 border-r-0 border-t-0 border-gray-400 text-xs p-0">
+      <input formControlName="fromDate" type="date" class="border-l-0 border-r-0 border-t-0 border-gray-400 text-xs p-0">
     </div>
 
     <div class="flex items-center space-x-2">
       <label class="font-bold">To</label>
-      <input type="date" class="border-l-0 border-r-0 border-t-0 border-gray-400 text-xs p-0">
+      <input formControlName="toDate" type="date" class="border-l-0 border-r-0 border-t-0 border-gray-400 text-xs p-0">
     </div>
 
     <button class="bg-gray-800 px-3 py-1 text-white font-bold">Go</button>

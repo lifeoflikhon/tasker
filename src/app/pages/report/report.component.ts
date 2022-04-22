@@ -17,6 +17,7 @@ import { deleteTask, loadTasks } from '../../store/actions';
 })
 export class ReportComponent implements OnInit {
   tasks$: Observable<Task[]> = this.store.select(selectAllTasks);
+  filteredTasks$: Observable<Task[]>;
 
   @ViewChild(ReportTableComponent) reportTable: ReportTableComponent;
 
@@ -52,5 +53,23 @@ export class ReportComponent implements OnInit {
 
   delete( $event: Task ) {
     this.store.dispatch(deleteTask({ id: $event.id }));
+  }
+
+  filter( $event: any ) {
+    this.filteredTasks$ = null;
+    const { fromDate, toDate } = $event;
+    const date1 = new Date(fromDate || new Date());
+    const date2 = new Date(toDate || new Date());
+    this.tasks$.subscribe(tasks => {
+      const filteredTasks: Task[] = [];
+      tasks.forEach(task => {
+        const isAfterFromDate = new Date(task.dueDate) >= date1;
+        const isBeforeToDate = new Date(task.dueDate) <= date2;
+        if ( isAfterFromDate && isBeforeToDate ) {
+          filteredTasks.push(task);
+        }
+      });
+      this.filteredTasks$ = of(filteredTasks);
+    });
   }
 }

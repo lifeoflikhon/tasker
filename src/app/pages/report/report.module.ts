@@ -8,6 +8,7 @@ import { ReportTableComponent } from './layouts/report-table/report-table.compon
 import { ReportFilterComponent } from './layouts/report-filter/report-filter.component';
 import { ReportExporterComponent } from './layouts/report-exporter/report-exporter.component';
 import { SharedModule } from '../../shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { SharedModule } from '../../shared/shared.module';
   imports: [
     CommonModule,
     ReportRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ],
   providers: [DatePipe]
 })
