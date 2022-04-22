@@ -1,0 +1,49 @@
+<div class="border border-gray-300 p-4 grid gap-1">
+  <div class="flex items-center justify-between space-x-2">
+    <div class="flex items-center space-x-2">
+      <button *ngIf="task.status === 'done'"><i class="fas fa-circle-check text-green-600"></i></button>
+      <button (click)="done.emit(task)" *ngIf="task.status === 'to do' || task.status === 'doing'"><i class="fal fa-circle"></i></button>
+    </div>
+
+    <button [matMenuTriggerFor]="menu"><i class="fal fa-ellipsis-h"></i></button>
+  </div>
+
+  <div class="grid grid-cols-3">
+    <div class="col-span-2">
+      <h3 class="font-bold text-sm">{{task.title}}</h3>
+      <p class="text-gray-500 line-clamp-2">{{task.description}}</p>
+    </div>
+
+    <div>
+      <p>Assignee: </p>
+      <p>Project: </p>
+    </div>
+  </div>
+
+  <div class="flex w-full items-center justify-between space-x-2">
+    <tasker-progress-bar class="w-[50%]" [max]="task.estimatedTime" [value]="task.spentTime"></tasker-progress-bar>
+    <p class="text-gray-500 text-[10px] font-bold tracking-wider">Spent: {{task.spentTime}}m | Estimated: {{task.estimatedTime}}m</p>
+  </div>
+</div>
+
+<mat-menu #menu="matMenu">
+  <button class="flex items-center space-x-2 text-xs font-primary" mat-menu-item>
+    <i class="fal fa-trash"></i>
+    <span>Delete</span>
+  </button>
+
+  <button class="flex items-center space-x-2 text-xs font-primary" mat-menu-item>
+    <i class="fal fa-clone"></i>
+    <span>Duplicate</span>
+  </button>
+
+  <button *ngIf="task.status !== 'blocker' && task.status !== 'done'" class="flex items-center text-red-600 space-x-2 text-xs font-primary" mat-menu-item>
+    <i class="fal fa-times-circle"></i>
+    <span>Block</span>
+  </button>
+
+  <button *ngIf="task.status === 'blocker'" class="flex items-center text-green-600 space-x-2 text-xs font-primary" mat-menu-item>
+    <i class="fal fa-times-circle"></i>
+    <span>Unblock</span>
+  </button>
+</mat-menu>

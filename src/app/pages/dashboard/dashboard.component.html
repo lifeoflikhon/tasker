@@ -1,3 +1,30 @@
-{{ tasks$ | async | json }}
-<hr>
-{{ projects$ | async | json }}
+<div>
+  <div class="flex items-center justify-between p-4">
+    <h2 class="text-lg font-bold">Tasks</h2>
+    <button class="border border-black px-3 py-2 hover:bg-black hover:text-white">Add Task</button>
+  </div>
+
+  <div class="p-4 flex">
+    <button [ngClass]="{'border-black': true}" class="border-b-2 border-gray-200 px-3 py-2">Past</button>
+    <button class="border-b-2 border-gray-200 px-3 py-2">Today</button>
+    <button class="border-b-2 border-gray-200 px-3 py-2">Upcoming</button>
+  </div>
+
+  <div class="p-4 grid gap-4" *ngIf="tasks$ | async as tasks">
+    <div *ngFor="let section of sections">
+      <div class="font-bold mb-2">
+        <h3 [class]="section.color">
+          <i class="mr-2 fal fa-{{section.icon}}"></i>
+          <span>{{section.title}}</span>
+        </h3>
+      </div>
+
+      <div class="grid gap-2">
+        <tasker-task (done)="markAsDone(task)"
+                     *ngFor="let task of tasks | filter: 'status': section.keyword"
+                     [task]="task"
+        ></tasker-task>
+      </div>
+    </div>
+  </div>
+</div>
