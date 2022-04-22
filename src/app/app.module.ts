@@ -9,7 +9,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { LayoutsModule } from './layouts/layouts.module';
 import { authReducer, projectReducer, taskReducer } from './store/reducers';
-import { TaskEffect } from './store/effects';
+import { ProjectEffect, TaskEffect } from './store/effects';
 import { ApiInterceptor } from './shared/interceptors/api.interceptor';
 
 @NgModule( {
@@ -26,7 +26,8 @@ import { ApiInterceptor } from './shared/interceptors/api.interceptor';
       auth: authReducer,
     } ),
     EffectsModule.forRoot( [
-      TaskEffect
+      TaskEffect,
+      ProjectEffect
     ] ),
     HttpClientModule,
     LayoutsModule,

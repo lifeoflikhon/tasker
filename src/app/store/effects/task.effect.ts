@@ -27,7 +27,7 @@ export class TaskEffect {
 
   loadTasks$ = createEffect(() => this.actions$.pipe(
     ofType(loadTasks),
-    switchMap(() => this.taskService.loadTasks().pipe(
+    switchMap(() => this.taskService.load().pipe(
       map(tasks => loadTasksSuccess({ tasks })),
       catchError(error => of(loadTasksFailure({ error })))
     ))
@@ -43,7 +43,7 @@ export class TaskEffect {
 
   updateTask$ = createEffect(() => this.actions$.pipe(
     ofType(updateTask),
-    switchMap(( {task} ) => this.taskService.saveTask(task).pipe(
+    switchMap(( {task} ) => this.taskService.save(task).pipe(
       map(task => updateTaskSuccess({ task })),
       catchError(error => of(updateTaskFailure({ error })))
     ))
@@ -51,7 +51,7 @@ export class TaskEffect {
 
   createTask$ = createEffect(() => this.actions$.pipe(
     ofType(createTask),
-    switchMap(({ task }) => this.taskService.saveTask(task).pipe(
+    switchMap(({ task }) => this.taskService.save(task).pipe(
       map(task => createTaskSuccess({ task })),
       catchError(error => of(createTaskFailure({ error })))
     ))
@@ -59,7 +59,7 @@ export class TaskEffect {
 
   deleteTask$ = createEffect(() => this.actions$.pipe(
     ofType(deleteTask),
-    switchMap(({ id }) => this.taskService.deleteTask(id).pipe(
+    switchMap(({ id }) => this.taskService.delete(id).pipe(
       map(id => deleteTaskSuccess({ id })),
       catchError(error => of(deleteTaskFailure({ error })))
     ))

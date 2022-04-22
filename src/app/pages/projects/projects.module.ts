@@ -6,6 +6,7 @@ import { ProjectsComponent } from './projects.component';
 import { NewProjectComponent } from './views/new-project/new-project.component';
 import { ProjectDetailComponent } from './views/project-detail/project-detail.component';
 import { ProjectListComponent } from './views/project-list/project-list.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ProjectListComponent } from './views/project-list/project-list.componen
   ],
   imports: [
     CommonModule,
-    ProjectsRoutingModule
+    ProjectsRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class ProjectsModule { }

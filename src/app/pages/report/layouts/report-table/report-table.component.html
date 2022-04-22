@@ -2,9 +2,10 @@
   <table #table class="w-full text-left">
     <thead>
       <tr class="bg-gray-600 text-white">
-        <th>
-          <input type="checkbox">
-        </th>
+<!--        <th>-->
+<!--          <input type="checkbox">-->
+<!--        </th>-->
+        <th>Sl.</th>
         <th>#</th>
         <th>Title</th>
         <th>Project</th>
@@ -16,12 +17,14 @@
     <tbody>
       <ng-container *ngFor="let taskGroup of tasks | groupTasksByDate; index as i">
         <tr class="bg-gray-100 font-bold">
-          <td><input type="checkbox"></td>
+<!--          <td><input type="checkbox"></td>-->
+          <td></td>
           <td colspan="6">{{taskGroup.date | date}}</td>
         </tr>
 
-        <tr *ngFor="let task of taskGroup.tasks">
-          <td><input type="checkbox"></td>
+        <tr class="odd:bg-gray-50" *ngFor="let task of taskGroup.tasks; index as i">
+<!--          <td><input type="checkbox"></td>-->
+          <td>{{i + 1}}</td>
           <td><a [routerLink]="['/tasks', task.id]" class="font-bold text-indigo-700">#{{task.id}}</a></td>
           <td><a [href]="task.url" target="_blank" class="font-bold">{{task.title}}</a></td>
           <td>{{task?.project?.name}}</td>
@@ -38,5 +41,11 @@
       </ng-container>
     </tbody>
 
-    <tfoot></tfoot>
+    <tfoot>
+      <tr class="bg-gray-800 text-white">
+        <td colspan="6">
+          <p>Total Tasks: {{tasks.length}}</p>
+        </td>
+      </tr>
+    </tfoot>
   </table>
