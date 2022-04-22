@@ -9,6 +9,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app-state';
 import { selectAllTasks } from '../../store/selectors';
 import { deleteTask, loadTasks } from '../../store/actions';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'tasker-report',
@@ -36,10 +37,14 @@ export class ReportComponent implements OnInit {
 
   saveAsExcel() {
     const table = this.reportTable.getTable();
-    const dataType = 'application/vnd.ms-excel';
-    const tableHTML = table.outerHTML.replace(/ /g, '%20');
-    const blob = new Blob([tableHTML], { type: dataType });
-    FileSaver.saveAs(blob, 'report.xls');
+    // const dataType = 'application/vnd.ms-excel';
+    // const tableHTML = table.outerHTML.replace(/ /g, '%20');
+    // const blob = new Blob([tableHTML], { type: dataType });
+    // FileSaver.saveAs(blob, 'report.xls');
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(table);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    XLSX.writeFile(wb, 'Tasks.xlsx');
   }
 
   saveAsJSON() {
