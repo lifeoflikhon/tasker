@@ -17,7 +17,7 @@ export class GroupTasksByDatePipe implements PipeTransform {
     const formattedTasks = tasks.map(task => {
       return {
         ...task,
-        date: this.datePipe.transform(task.createdAt, 'dd/MM/yyyy')
+        date: this.datePipe.transform(task.dueDate, 'dd/MM/yyyy')
       }
     });
 

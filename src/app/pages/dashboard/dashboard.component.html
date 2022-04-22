@@ -5,9 +5,9 @@
   </div>
 
   <div class="p-4 flex">
-    <button [ngClass]="{'border-black': true}" class="border-b-2 border-gray-200 px-3 py-2">Past</button>
-    <button class="border-b-2 border-gray-200 px-3 py-2">Today</button>
-    <button class="border-b-2 border-gray-200 px-3 py-2">Upcoming</button>
+    <button (click)="getPast()" [ngClass]="{'border-black': activeTab === 'past'}" class="border-b-2 border-gray-200 px-3 py-2">Past</button>
+    <button (click)="getToday()" [ngClass]="{'border-black': activeTab === 'today'}" class="border-b-2 border-gray-200 px-3 py-2">Today</button>
+    <button (click)="getUpcoming()" [ngClass]="{'border-black': activeTab === 'upcoming'}" class="border-b-2 border-gray-200 px-3 py-2">Upcoming</button>
   </div>
 
   <div class="p-4 grid gap-4" *ngIf="tasks$ | async as tasks">
@@ -19,8 +19,12 @@
         </h3>
       </div>
 
-      <div class="grid gap-2">
+      <div class="grid gap-2 md:grid-cols-2 xl:grid-cols-3">
         <tasker-task (done)="markAsDone(task)"
+                     (delete)="delete(task)"
+                     (block)="block(task)"
+                     (unblock)="unblock(task)"
+                     (duplicate)="duplicate(task)"
                      *ngFor="let task of tasks | filter: 'status': section.keyword"
                      [task]="task"
         ></tasker-task>

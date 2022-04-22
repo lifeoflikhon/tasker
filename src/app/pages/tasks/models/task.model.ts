@@ -1,6 +1,8 @@
 import { Project } from '../../projects/models';
 
 export interface Task {
+  dueDate?: string;
+
   id?: string;
 
   title: string;

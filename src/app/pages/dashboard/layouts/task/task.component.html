@@ -27,22 +27,22 @@
 </div>
 
 <mat-menu #menu="matMenu">
-  <button class="flex items-center space-x-2 text-xs font-primary" mat-menu-item>
+  <button (click)="delete.emit()" class="flex items-center space-x-2 text-xs font-primary" mat-menu-item>
     <i class="fal fa-trash"></i>
     <span>Delete</span>
   </button>
 
-  <button class="flex items-center space-x-2 text-xs font-primary" mat-menu-item>
+  <button (click)="duplicate.emit()" class="flex items-center space-x-2 text-xs font-primary" mat-menu-item>
     <i class="fal fa-clone"></i>
     <span>Duplicate</span>
   </button>
 
-  <button *ngIf="task.status !== 'blocker' && task.status !== 'done'" class="flex items-center text-red-600 space-x-2 text-xs font-primary" mat-menu-item>
+  <button (click)="block.emit()" *ngIf="task.status !== 'blocker' && task.status !== 'done'" class="flex items-center text-red-600 space-x-2 text-xs font-primary" mat-menu-item>
     <i class="fal fa-times-circle"></i>
     <span>Block</span>
   </button>
 
-  <button *ngIf="task.status === 'blocker'" class="flex items-center text-green-600 space-x-2 text-xs font-primary" mat-menu-item>
+  <button (click)="unblock.emit()" *ngIf="task.status === 'blocker'" class="flex items-center text-green-600 space-x-2 text-xs font-primary" mat-menu-item>
     <i class="fal fa-times-circle"></i>
     <span>Unblock</span>
   </button>
