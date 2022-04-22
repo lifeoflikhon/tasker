@@ -5,6 +5,10 @@ import { dummyTasks } from './data';
 import * as FileSaver from 'file-saver';
 import { ReportTableComponent } from './layouts/report-table/report-table.component';
 import * as html2pdf from 'html2pdf.js';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../store/app-state';
+import { selectAllTasks } from '../../store/selectors';
+import { deleteTask, loadTasks } from '../../store/actions';
 
 @Component({
   selector: 'tasker-report',
@@ -12,14 +16,16 @@ import * as html2pdf from 'html2pdf.js';
   styleUrls: ['./report.component.scss']
 })
 export class ReportComponent implements OnInit {
-  tasks$: Observable<Task[]> = of(dummyTasks);
+  tasks$: Observable<Task[]> = this.store.select(selectAllTasks);
 
   @ViewChild(ReportTableComponent) reportTable: ReportTableComponent;
 
   constructor(
+    private store: Store<AppState>,
   ) { }
 
   ngOnInit(): void {
+    this.store.dispatch(loadTasks());
   }
 
   saveAsPDF() {
@@ -36,8 +42,15 @@ export class ReportComponent implements OnInit {
   }
 
   saveAsJSON() {
-    const blob = new Blob([JSON.stringify(dummyTasks)], { type: 'application/json' });
-    FileSaver.saveAs(blob, 'tasks.json');
+    this.tasks$.subscribe(tasks => {
+      const blob = new Blob([JSON.stringify(tasks)], { type: 'application/json' });
+      FileSaver.saveAs(blob, 'tasks.json');
+    }).unsubscribe();
   }
 
+  edit( $event: Task ) {}
+
+  delete( $event: Task ) {
+    this.store.dispatch(deleteTask({ id: $event.id }));
+  }
 }

@@ -7,10 +7,9 @@
         </th>
         <th>#</th>
         <th>Title</th>
-        <th>Date</th>
         <th>Project</th>
         <th>Progress</th>
-        <th>Action</th>
+        <th class="text-center">Action</th>
       </tr>
     </thead>
 
@@ -25,12 +24,14 @@
           <td><input type="checkbox"></td>
           <td><a [routerLink]="['/tasks', task.id]" class="font-bold text-indigo-700">#{{task.id}}</a></td>
           <td><a [href]="task.url" target="_blank" class="font-bold">{{task.title}}</a></td>
-          <td>{{task.project.name}}</td>
-          <td><progress [max]="task.estimatedTime" [value]="task.spentTime"></progress></td>
+          <td>{{task?.project?.name}}</td>
           <td>
-            <div>
-              <button><i class="fal fa-pencil"></i></button>
-              <button><i class="fal fa-trash"></i></button>
+            <tasker-progress-bar [max]="task.estimatedTime" [value]="task.spentTime"></tasker-progress-bar>
+          </td>
+          <td>
+            <div class="flex items-center space-x-2 justify-center">
+              <button (click)="edit.emit(task)"><i class="fal fa-pencil"></i></button>
+              <button (click)="delete.emit(task)"><i class="fal fa-trash"></i></button>
             </div>
           </td>
         </tr>

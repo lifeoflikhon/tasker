@@ -3,4 +3,7 @@
                         (json)="saveAsJSON()"
                         (pdf)="saveAsPDF()"
 ></tasker-report-exporter>
-<tasker-report-table [tasks]="tasks$ | async"></tasker-report-table>
+<tasker-report-table [tasks]="tasks$ | async"
+                     (delete)="delete($event)"
+                     (edit)="edit($event)"
+></tasker-report-table>

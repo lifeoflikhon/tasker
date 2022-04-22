@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Task } from '../../../tasks/models';
 
 @Component({
@@ -10,6 +10,9 @@ export class ReportTableComponent implements OnInit {
   @Input() tasks: Task[];
 
   @ViewChild('table') table: ElementRef<HTMLTableElement>;
+
+  @Output() edit: EventEmitter<Task> = new EventEmitter<Task>();
+  @Output() delete: EventEmitter<Task> = new EventEmitter<Task>();
 
   constructor() { }
 

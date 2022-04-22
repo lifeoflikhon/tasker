@@ -6,10 +6,11 @@ import { InputUrlComponent } from './components/input-url/input-url.component';
 import { InputSelectComponent } from './components/input-select/input-select.component';
 import { InputDateComponent } from './components/input-date/input-date.component';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 
-@NgModule({
+@NgModule( {
   declarations: [
     InputTextComponent,
     InputNumberComponent,
@@ -18,8 +19,12 @@ import { ProgressBarComponent } from './components/progress-bar/progress-bar.com
     InputDateComponent,
     ProgressBarComponent
   ],
+  exports: [
+    ProgressBarComponent
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatTooltipModule
   ]
 })
 export class SharedModule { }
