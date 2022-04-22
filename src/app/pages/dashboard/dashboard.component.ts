@@ -3,8 +3,9 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app-state';
 import { Observable } from 'rxjs';
 import { Task } from '../tasks/models';
-import { selectAllTasks } from '../../store/selectors';
-import { loadTasks } from '../../store/actions';
+import { selectAllProjects, selectAllTasks } from '../../store/selectors';
+import { loadProjects, loadTasks } from '../../store/actions';
+import { Project } from '../projects/models';
 
 @Component({
   selector: 'tasker-dashboard',
@@ -13,6 +14,7 @@ import { loadTasks } from '../../store/actions';
 })
 export class DashboardComponent implements OnInit {
   public tasks$: Observable<Task[]> = this.store.select(selectAllTasks);
+  public projects$: Observable<Project[]> = this.store.select(selectAllProjects);
 
   constructor(
     private store: Store<AppState>
@@ -20,6 +22,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(loadTasks());
+    this.store.dispatch(loadProjects());
   }
 
 }
