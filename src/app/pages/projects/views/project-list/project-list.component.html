@@ -7,6 +7,6 @@
 <div class="p-4 grid gap-4 sm:grid-cols-2">
   <section class="p-4 border border-gray-200" *ngFor="let project of projects$ | async">
     <h3 class="mb-2 text-base font-bold">{{project.name}}</h3>
-    <p class="text-gray-600 line-clamp-3 hover:line-clamp-none">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo nulla veniam voluptatibus. Est fuga in iure laudantium maxime saepe soluta?</p>
+    <p class="text-gray-600 line-clamp-3 hover:line-clamp-none">{{project.description}}</p>
   </section>
 </div>

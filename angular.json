@@ -133,6 +133,16 @@
               "devServerTarget": "tasker:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "tasker:build:production",
+            "firebaseProject": "tasker-ce86f",
+            "firebaseHostingSite": "tasker-ce86f"
+          }
         }
       }
     }

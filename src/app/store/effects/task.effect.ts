@@ -14,14 +14,14 @@ import {
   updateTask, updateTaskFailure, updateTaskSuccess
 } from '../actions';
 import { catchError, map, of, switchMap } from 'rxjs';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 
 @Injectable()
 export class TaskEffect {
   constructor(
     private actions$: Actions,
     private taskService: TaskService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
   ) {
   }
 

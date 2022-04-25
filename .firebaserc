@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "tasker-ce86f"
+  },
+  "targets": {
+    "tasker-ce86f": {
+      "hosting": {
+        "tasker": [
+          "tasker-ce86f"
+        ]
+      }
+    }
+  }
+}

@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, Optional } from '@angular/core';
 import { Task } from '../models';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { CrudService } from '../../../shared/services/crud.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +11,13 @@ export class TaskService {
   private endpoint: string = 'tasks';
 
   constructor(
-    private http: HttpClient
-  ) { }
+    private http: HttpClient,
+    private crud: CrudService
+  ) {
+  }
 
   load(): Observable<Task[]> {
-    return this.http.get<Task[]>(this.endpoint);
+    return this.crud.getCollections<Task>(this.endpoint);
   }
 
   save( task: Task): Observable<Task> {

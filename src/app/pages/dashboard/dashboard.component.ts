@@ -7,6 +7,7 @@ import { selectAllProjects, selectAllTasks } from '../../store/selectors';
 import { createTask, deleteTask, loadProjects, loadTasks, updateTask } from '../../store/actions';
 import { Project } from '../projects/models';
 import { isFuture, isPast, isToday } from 'date-fns';
+import { TaskService } from '../tasks/services/task.service';
 
 const SECTIONS = [
   { keyword: 'to do', title: 'To Do', icon: 'circle', color: 'text-black' },
@@ -18,7 +19,7 @@ const SECTIONS = [
 @Component({
   selector: 'tasker-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
   public tasks$: Observable<Task[]> = this.store.select(selectAllTasks).pipe(
@@ -29,7 +30,7 @@ export class DashboardComponent implements OnInit {
   activeTab: 'past' | 'today' | 'upcoming' = 'today';
 
   constructor(
-    private store: Store<AppState>
+    private store: Store<AppState>,
   ) { }
 
   ngOnInit(): void {
