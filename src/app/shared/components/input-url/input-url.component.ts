@@ -7,7 +7,7 @@ import { AbstractControl, FormControl } from '@angular/forms';
   styleUrls: ['./input-url.component.scss']
 })
 export class InputUrlComponent implements OnInit {
-  @Input() control: FormControl | AbstractControl;
+  @Input() control: any;
   @Input() label: string;
 
   constructor() { }

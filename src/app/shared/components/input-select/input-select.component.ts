@@ -8,7 +8,7 @@ import { AbstractControl, FormControl } from '@angular/forms';
 })
 export class InputSelectComponent implements OnInit {
   @Input() options: any[] = [];
-  @Input() control: FormControl | AbstractControl;
+  @Input() control: any;
   @Input() label: string;
   @Output() selected: EventEmitter<any> = new EventEmitter<any>();
 

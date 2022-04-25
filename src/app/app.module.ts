@@ -42,13 +42,7 @@ import { AngularFireModule } from '@angular/fire/compat';
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
   ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ApiInterceptor,
-      multi: true
-    }
-  ],
+  providers: [],
   bootstrap: [ AppComponent ]
 } )
 export class AppModule {

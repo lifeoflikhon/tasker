@@ -7,7 +7,7 @@ import { AbstractControl, FormControl } from '@angular/forms';
   styleUrls: ['./input-text.component.scss']
 })
 export class InputTextComponent implements OnInit {
-  @Input() control: FormControl | AbstractControl;
+  @Input() control: any;
   @Input() label: string;
 
   constructor() { }
