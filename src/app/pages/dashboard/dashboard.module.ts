@@ -7,6 +7,7 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { SharedModule } from '../../shared/shared.module';
 import { TaskComponent } from './layouts/task/task.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { TasksModule } from '../tasks/tasks.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { MatMenuModule } from '@angular/material/menu';
     CommonModule,
     DashboardRoutingModule,
     SharedModule,
-    MatMenuModule
+    MatMenuModule,
+    TasksModule
   ]
 })
 export class DashboardModule { }

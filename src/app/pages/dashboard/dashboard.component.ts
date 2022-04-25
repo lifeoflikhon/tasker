@@ -28,6 +28,7 @@ export class DashboardComponent implements OnInit {
   public projects$: Observable<Project[]> = this.store.select(selectAllProjects);
   sections: any[] = SECTIONS;
   activeTab: 'past' | 'today' | 'upcoming' = 'today';
+  addingTask: boolean = false;
 
   constructor(
     private store: Store<AppState>,
@@ -81,5 +82,9 @@ export class DashboardComponent implements OnInit {
     this.tasks$ = this.store.select(selectAllTasks).pipe(
       map(tasks => tasks.filter(task => isToday(new Date(task.dueDate))))
     );
+  }
+
+  toggleTask() {
+    this.addingTask = !this.addingTask;
   }
 }

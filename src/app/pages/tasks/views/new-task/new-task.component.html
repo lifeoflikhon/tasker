@@ -1,1 +1,31 @@
-<p>new-task works!</p>
+<form [formGroup]="taskForm" (ngSubmit)="save()" class="w-10/12 mx-auto shadow p-4 border border-gray-200 grid gap-2">
+  <div class="flex">
+    <label for="title" class="w-20 font-bold">Title</label>
+    <input formControlName="title" type="text" placeholder="ie. add task to list" id="title" class="flex-1">
+  </div>
+
+  <div class="flex">
+    <label for="description" class="w-20 font-bold">Description</label>
+    <textarea formControlName="description" placeholder="Write few words about this project" id="description" class="flex-1"></textarea>
+  </div>
+
+  <div class="flex">
+    <label for="estimated" class="w-20 font-bold">Estimated</label>
+    <input formControlName="estimatedTime" type="number" placeholder="ie. 100" id="estimated" class="flex-1">
+  </div>
+
+  <div class="flex">
+    <label for="spent" class="w-20 font-bold">Spent</label>
+    <input formControlName="spentTime" type="number" placeholder="ie. 78" id="spent" class="flex-1">
+  </div>
+
+  <div class="flex">
+    <label for="url" class="w-20 font-bold">URL</label>
+    <input formControlName="url" type="url" placeholder="ie. https://trello.com/324345435" id="url" class="flex-1">
+  </div>
+
+  <div class="flex items-center justify-end mt-4 space-x-2">
+    <button type="reset" class="px-3 py-2"><span>Clear</span></button>
+    <button type="submit" class="bg-indigo-800 text-white font-bold px-3 py-2"><span>Save</span></button>
+  </div>
+</form>

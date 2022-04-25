@@ -1,13 +1,17 @@
 <div>
   <div class="flex items-center justify-between p-4">
     <h2 class="text-lg font-bold">Tasks</h2>
-    <button class="border border-black px-3 py-2 hover:bg-black hover:text-white">Add Task</button>
+    <button (click)="toggleTask()" class="border border-black px-3 py-2 hover:bg-black hover:text-white" *ngIf="!addingTask">Add Task</button>
   </div>
 
   <div class="p-4 flex">
     <button (click)="getPast()" [ngClass]="{'border-black': activeTab === 'past'}" class="border-b-2 border-gray-200 px-3 py-2">Past</button>
     <button (click)="getToday()" [ngClass]="{'border-black': activeTab === 'today'}" class="border-b-2 border-gray-200 px-3 py-2">Today</button>
     <button (click)="getUpcoming()" [ngClass]="{'border-black': activeTab === 'upcoming'}" class="border-b-2 border-gray-200 px-3 py-2">Upcoming</button>
+  </div>
+
+  <div *ngIf="addingTask">
+    <tasker-new-task (added)="toggleTask()"></tasker-new-task>
   </div>
 
   <div class="p-4 grid gap-4" *ngIf="tasks$ | async as tasks">

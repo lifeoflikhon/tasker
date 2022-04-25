@@ -1,7 +1,7 @@
 import { Injectable, Optional } from '@angular/core';
 import { AngularFirestore, QueryFn } from '@angular/fire/compat/firestore';
-import { take } from 'rxjs/operators';
-import { from } from 'rxjs';
+import { take, tap } from 'rxjs/operators';
+import { from, map, Observable, of, switchMap } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
@@ -16,7 +16,7 @@ export class CrudService {
     return this.afs.collection<T>(path, query).valueChanges({ idField: 'id' });
   }
 
-  getDocument<T>(path: string) {
+  getDocument<T>(path: string): Observable<T | undefined> {
     return this.afs.doc<T>(path).valueChanges({ idField: 'id' });
   }
 
@@ -24,12 +24,16 @@ export class CrudService {
     return this.afs.doc(path).set( data);
   }
 
-  addDocument(path: string, data: any) {
-    return from(this.afs.collection(path).add(data));
+  addDocument(path: string, data: any): Observable<any> {
+    const colRef = this.afs.collection(path);
+    return from(colRef.add(data)).pipe(
+      switchMap((docRef) => colRef.doc<any>(docRef.id).valueChanges())
+    );
   }
 
   updateDocument(path: string, data: any) {
-    return this.afs.doc(path).update(data);
+    this.afs.doc(path).update(data).then(() => {});
+    return this.getDocument(path);
   }
 
   deleteDocument(path: string) {

@@ -25,18 +25,18 @@ export class TaskService {
   }
 
   getById(id: string): Observable<Task> {
-    return this.http.get<Task>(`${this.endpoint}/${id}`);
+    return this.crud.getDocument(`${this.endpoint}/${id}`);
   }
 
   delete( id: string): Observable<string> {
     return this.http.delete<string>(`${this.endpoint}/${id}`);
   }
 
-  private add(task: Task): Observable<Task> {
-    return this.http.post<Task>(this.endpoint, task);
+  private add(task: Task): Observable<any> {
+    return this.crud.addDocument(this.endpoint, task);
   }
 
-  private edit(task: Task): Observable<Task> {
-    return this.http.put<Task>(`${this.endpoint}/${task.id}`, task);
+  private edit(task: Task): Observable<any> {
+    return this.crud.updateDocument(`${this.endpoint}/${task.id}`, task);
   }
 }
