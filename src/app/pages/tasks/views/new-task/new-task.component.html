@@ -1,4 +1,4 @@
-<form [formGroup]="taskForm" (ngSubmit)="save()" class="w-10/12 mx-auto shadow p-4 border border-gray-200 grid gap-2">
+<form [formGroup]="taskForm" (ngSubmit)="save()" class="w-full md:w-10/12 mx-auto md:shadow p-4 border border-gray-200 grid gap-2">
   <tasker-input-text [control]="taskForm.get('title')" label="Title"></tasker-input-text>
   <tasker-input-editor [control]="taskForm.get('description')"></tasker-input-editor>
   <tasker-input-number label="Estimated" [control]="taskForm.get('estimatedTime')"></tasker-input-number>

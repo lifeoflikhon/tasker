@@ -45,3 +45,9 @@
   box-shadow: unset;
   @apply shadow border border-gray-200;
 }
+
+.ng-select .ng-select-container {
+  border-radius: 0;
+  border: 0;
+  border-bottom: 1px solid #bbb;
+}
