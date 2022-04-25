@@ -26,5 +26,5 @@ export interface Task {
 
   isDeleted?: boolean;
 
-  status: 'to do' | 'doing' | 'done' | 'blocker';
+  status: 'to do' | 'done' | 'blocker';
 }

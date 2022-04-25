@@ -11,7 +11,6 @@ import { TaskService } from '../tasks/services/task.service';
 
 const SECTIONS = [
   { keyword: 'to do', title: 'To Do', icon: 'circle', color: 'text-black' },
-  { keyword: 'doing', title: 'Doing', icon: 'spinner', color: 'text-black' },
   { keyword: 'done', title: 'Done', icon: 'circle-check', color: 'text-black' },
   { keyword: 'blocker', title: 'Blocker', icon: 'times-circle', color: 'text-red-600' },
 ];
@@ -59,7 +58,7 @@ export class DashboardComponent implements OnInit {
   }
 
   unblock(task: Task) {
-    const updatedTask: Task = {...task, status: 'doing'};
+    const updatedTask: Task = {...task, status: 'to do'};
     this.store.dispatch(updateTask( { task: updatedTask } ));
   }
 

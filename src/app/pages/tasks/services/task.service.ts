@@ -29,7 +29,7 @@ export class TaskService {
   }
 
   delete( id: string): Observable<string> {
-    return this.http.delete<string>(`${this.endpoint}/${id}`);
+    return this.crud.deleteDocument(`${this.endpoint}/${id}`);
   }
 
   private add(task: Task): Observable<any> {

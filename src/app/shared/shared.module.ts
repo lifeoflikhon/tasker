@@ -7,6 +7,8 @@ import { InputSelectComponent } from './components/input-select/input-select.com
 import { InputDateComponent } from './components/input-date/input-date.component';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ReactiveFormsModule } from '@angular/forms';
+import { InputEditorComponent } from './components/input-editor/input-editor.component';
 
 
 
@@ -17,14 +19,20 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     InputUrlComponent,
     InputSelectComponent,
     InputDateComponent,
-    ProgressBarComponent
+    ProgressBarComponent,
+    InputEditorComponent
   ],
   exports: [
-    ProgressBarComponent
+    ProgressBarComponent,
+    InputNumberComponent,
+    InputEditorComponent,
+    InputTextComponent,
+    InputUrlComponent
   ],
   imports: [
     CommonModule,
-    MatTooltipModule
+    MatTooltipModule,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule { }

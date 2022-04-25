@@ -1,1 +1,4 @@
-<p>input-url works!</p>
+<div class="flex">
+  <label [attr.for]="label" class="w-20 font-bold">{{label}}</label>
+  <input [formControl]="control" type="url" placeholder="ie. https://trello.com/324345435" [attr.id]="label" class="flex-1">
+</div>

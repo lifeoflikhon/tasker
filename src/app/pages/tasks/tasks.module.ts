@@ -6,6 +6,7 @@ import { TasksComponent } from './tasks.component';
 import { NewTaskComponent } from './views/new-task/new-task.component';
 import { TaskDetailsComponent } from './views/task-details/task-details.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../../shared/shared.module';
 
 
 @NgModule( {
@@ -20,7 +21,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     TasksRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class TasksModule { }

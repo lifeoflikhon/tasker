@@ -27,7 +27,8 @@ export class CrudService {
   addDocument(path: string, data: any): Observable<any> {
     const colRef = this.afs.collection(path);
     return from(colRef.add(data)).pipe(
-      switchMap((docRef) => colRef.doc<any>(docRef.id).valueChanges())
+      switchMap((docRef) => colRef.doc<any>(docRef.id).valueChanges()),
+      take(1),
     );
   }
 
@@ -36,7 +37,10 @@ export class CrudService {
     return this.getDocument(path);
   }
 
-  deleteDocument(path: string) {
-    return this.afs.doc(path).delete();
+  deleteDocument(path: string): Observable<any> {
+    this.afs.doc(path).delete().then(() => {});
+    return this.getDocument<any>(path).pipe(
+      map(res => res.id)
+    );
   }
 }

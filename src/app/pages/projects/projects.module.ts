@@ -7,6 +7,7 @@ import { NewProjectComponent } from './views/new-project/new-project.component';
 import { ProjectDetailComponent } from './views/project-detail/project-detail.component';
 import { ProjectListComponent } from './views/project-list/project-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../../shared/shared.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ProjectsRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class ProjectsModule { }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { AbstractControl, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'tasker-input-number',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./input-number.component.scss']
 })
 export class InputNumberComponent implements OnInit {
+  @Input() control: FormControl | AbstractControl;
+  @Input() label: string;
 
   constructor() { }
 

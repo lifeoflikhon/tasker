@@ -1,28 +1,9 @@
 <form [formGroup]="taskForm" (ngSubmit)="save()" class="w-10/12 mx-auto shadow p-4 border border-gray-200 grid gap-2">
-  <div class="flex">
-    <label for="title" class="w-20 font-bold">Title</label>
-    <input formControlName="title" type="text" placeholder="ie. add task to list" id="title" class="flex-1">
-  </div>
-
-  <div class="flex">
-    <label for="description" class="w-20 font-bold">Description</label>
-    <textarea formControlName="description" placeholder="Write few words about this project" id="description" class="flex-1"></textarea>
-  </div>
-
-  <div class="flex">
-    <label for="estimated" class="w-20 font-bold">Estimated</label>
-    <input formControlName="estimatedTime" type="number" placeholder="ie. 100" id="estimated" class="flex-1">
-  </div>
-
-  <div class="flex">
-    <label for="spent" class="w-20 font-bold">Spent</label>
-    <input formControlName="spentTime" type="number" placeholder="ie. 78" id="spent" class="flex-1">
-  </div>
-
-  <div class="flex">
-    <label for="url" class="w-20 font-bold">URL</label>
-    <input formControlName="url" type="url" placeholder="ie. https://trello.com/324345435" id="url" class="flex-1">
-  </div>
+  <tasker-input-text [control]="taskForm.get('title')" label="Title"></tasker-input-text>
+  <tasker-input-editor [control]="taskForm.get('description')"></tasker-input-editor>
+  <tasker-input-number label="Estimated" [control]="taskForm.get('estimatedTime')"></tasker-input-number>
+  <tasker-input-number label="Spent" [control]="taskForm.get('spentTime')"></tasker-input-number>
+  <tasker-input-url label="URL" [control]="taskForm.get('url')"></tasker-input-url>
 
   <div class="flex items-center justify-end mt-4 space-x-2">
     <button type="reset" class="px-3 py-2"><span>Clear</span></button>

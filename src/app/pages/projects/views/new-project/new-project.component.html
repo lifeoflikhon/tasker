@@ -1,13 +1,6 @@
 <form [formGroup]="projectForm" (ngSubmit)="save()" class="w-10/12 mx-auto shadow p-4 border border-gray-200 grid gap-2">
-  <div class="flex">
-    <label for="name" class="w-20 font-bold">Name</label>
-    <input formControlName="name" type="text" placeholder="ie. Othoba.com" id="name" class="flex-1">
-  </div>
-
-  <div class="flex">
-    <label for="description" class="w-20 font-bold">Description</label>
-    <textarea formControlName="description" placeholder="Write few words about this project" id="description" class="flex-1"></textarea>
-  </div>
+  <tasker-input-text label="Name" [control]="projectForm.get('name')"></tasker-input-text>
+  <tasker-input-editor [control]="projectForm.get('description')"></tasker-input-editor>
 
   <div class="flex items-center justify-end mt-4 space-x-2">
     <button type="reset" class="px-3 py-2"><span>Clear</span></button>
