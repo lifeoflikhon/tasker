@@ -2,7 +2,10 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Task } from '../../models';
 import { Store } from '@ngrx/store';
-import { createTask } from '../../../../store/actions';
+import { createTask, loadProjects } from '../../../../store/actions';
+import { Observable } from 'rxjs';
+import { Project } from '../../../projects/models';
+import { selectAllProjects } from '../../../../store/selectors';
 
 @Component({
   selector: 'tasker-new-task',
@@ -13,6 +16,7 @@ export class NewTaskComponent implements OnInit {
   taskForm: FormGroup;
 
   @Output() added: EventEmitter<any> = new EventEmitter<any>();
+  projects$: Observable<Project[]> = this.store.select(selectAllProjects);
 
   constructor(
     private fb: FormBuilder,
@@ -20,12 +24,15 @@ export class NewTaskComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.store.dispatch(loadProjects());
+
     this.taskForm = this.fb.group({
       title: ['', [Validators.required]],
       description: [''],
       estimatedTime: [0],
       spentTime: [0],
-      url: ['']
+      url: [''],
+      projectId: [null]
     });
   }
 

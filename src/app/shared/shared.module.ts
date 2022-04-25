@@ -9,6 +9,7 @@ import { ProgressBarComponent } from './components/progress-bar/progress-bar.com
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputEditorComponent } from './components/input-editor/input-editor.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 
@@ -27,12 +28,14 @@ import { InputEditorComponent } from './components/input-editor/input-editor.com
     InputNumberComponent,
     InputEditorComponent,
     InputTextComponent,
-    InputUrlComponent
+    InputUrlComponent,
+    InputSelectComponent
   ],
   imports: [
     CommonModule,
     MatTooltipModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgSelectModule
   ]
 })
 export class SharedModule { }

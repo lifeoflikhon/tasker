@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { AbstractControl, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'tasker-input-select',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./input-select.component.scss']
 })
 export class InputSelectComponent implements OnInit {
+  @Input() options: any[] = [];
+  @Input() control: FormControl | AbstractControl;
+  @Input() label: string;
 
   constructor() { }
 

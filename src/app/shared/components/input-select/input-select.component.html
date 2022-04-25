@@ -1,1 +1,9 @@
-<p>input-select works!</p>
+<div class="flex">
+  <label class="w-20 font-bold">{{label}}</label>
+  <ng-select class="flex-1"
+             [formControl]="control"
+             [items]="options"
+             bindLabel="name"
+             bindValue="id"
+  ></ng-select>
+</div>
