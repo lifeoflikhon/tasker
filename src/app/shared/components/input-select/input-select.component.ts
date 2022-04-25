@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormControl } from '@angular/forms';
 
 @Component({
@@ -10,10 +10,16 @@ export class InputSelectComponent implements OnInit {
   @Input() options: any[] = [];
   @Input() control: FormControl | AbstractControl;
   @Input() label: string;
+  @Output() selected: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { }
 
   ngOnInit(): void {
+    this.control.valueChanges
+      .subscribe(value => {
+        const item = this.options.find(option => option.id === value);
+        this.selected.emit(item);
+      });
   }
 
 }

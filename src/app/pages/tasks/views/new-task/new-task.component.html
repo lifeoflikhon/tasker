@@ -4,7 +4,7 @@
   <tasker-input-number label="Estimated" [control]="taskForm.get('estimatedTime')"></tasker-input-number>
   <tasker-input-number label="Spent" [control]="taskForm.get('spentTime')"></tasker-input-number>
   <tasker-input-url label="URL" [control]="taskForm.get('url')"></tasker-input-url>
-  <tasker-input-select [control]="taskForm.get('projectId')" label="Project" [options]="projects$ | async"></tasker-input-select>
+  <tasker-input-select (selected)="onProjectSelect($event)" [control]="taskForm.get('projectId')" label="Project" [options]="projects$ | async"></tasker-input-select>
 
   <div class="flex items-center justify-end mt-4 space-x-2">
     <button type="reset" class="px-3 py-2"><span>Clear</span></button>

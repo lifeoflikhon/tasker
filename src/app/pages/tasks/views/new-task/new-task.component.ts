@@ -32,7 +32,8 @@ export class NewTaskComponent implements OnInit {
       estimatedTime: [0],
       spentTime: [0],
       url: [''],
-      projectId: [null]
+      projectId: [null],
+      project: [null]
     });
   }
 
@@ -52,4 +53,7 @@ export class NewTaskComponent implements OnInit {
     this.added.emit();
   }
 
+  onProjectSelect( $event: any ) {
+    this.taskForm.patchValue({ project: $event });
+  }
 }
