@@ -5,7 +5,8 @@ import { AuthService } from 'src/app/services';
 @Component({
   selector: 'tasker-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  providers: [FormBuilder, AuthService]
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;

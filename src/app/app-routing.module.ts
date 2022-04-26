@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
+import { AuthGuard } from './guards';
 const routes: Routes = [
   {
     path: 'report',
-    loadChildren: () => import('./pages/report/report.module').then(m => m.ReportModule)
+    loadChildren: () => import('./pages/report/report.module').then(m => m.ReportModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'dashboard',
-    loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule)
+    loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',
@@ -28,11 +30,13 @@ const routes: Routes = [
   },
   {
     path: 'projects',
-    loadChildren: () => import('./pages/projects/projects.module').then(m => m.ProjectsModule)
+    loadChildren: () => import('./pages/projects/projects.module').then(m => m.ProjectsModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'tasks',
-    loadChildren: () => import('./pages/tasks/tasks.module').then(m => m.TasksModule)
+    loadChildren: () => import('./pages/tasks/tasks.module').then(m => m.TasksModule),
+    canActivate: [AuthGuard]
   },
   {
     path: '',
