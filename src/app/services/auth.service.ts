@@ -44,8 +44,6 @@ export class AuthService {
   signUp(email: string, password: string) {
     return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
-        /* Call the SendVerificaitonMail() function when new user sign
-        up and returns promise */
         this.sendVerificationMail();
         this.setUserData(result.user);
       }).catch((error) => {
