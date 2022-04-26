@@ -18,6 +18,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { TaskService } from './pages/tasks/services/task.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
+import { AuthService } from './services';
 
 @NgModule( {
   declarations: [
@@ -42,7 +43,7 @@ import { AngularFireModule } from '@angular/fire/compat';
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [ AppComponent ]
 } )
 export class AppModule {
