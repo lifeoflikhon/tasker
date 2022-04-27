@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services';
+import { Store } from '@ngrx/store';
+import { forgotPassword } from '../../store/actions';
 
 @Component({
   selector: 'tasker-forgot-password',
@@ -14,7 +16,8 @@ export class ForgotPasswordComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private store: Store
   ) { }
 
   ngOnInit(): void {
@@ -25,13 +28,8 @@ export class ForgotPasswordComponent implements OnInit {
 
   requestPasswordReset() {
     if ( this.forgotPasswordForm.invalid ) return;
-
     const { email } = this.forgotPasswordForm.value;
-
-    this.authService.forgotPassword(email)
-      .then(() => {
-        this.router.navigate(['/login']);
-      });
+    this.store.dispatch(forgotPassword({ email }));
   }
 
 }

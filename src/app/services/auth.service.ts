@@ -29,50 +29,44 @@ export class AuthService {
     });
   }
 
-  signIn(email: string, password: string) {
-    return this.afAuth.signInWithEmailAndPassword(email, password)
-      .then((result) => {
-        this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
-        });
-        this.setUserData(result.user);
-      }).catch((error) => {
-        window.alert(error.message);
-      });
+  async signIn( email: string, password: string ) {
+    try {
+      let result = await this.afAuth.signInWithEmailAndPassword( email, password );
+      this.ngZone.run( () => {
+        this.router.navigate( [ 'dashboard' ] );
+      } );
+      this.setUserData( result.user );
+      return result.user;
+    } catch ( error ) {
+      window.alert( error.message );
+      return null;
+    }
   }
 
-  signUp(email: string, password: string) {
-    return this.afAuth.createUserWithEmailAndPassword(email, password)
-      .then((result) => {
-        this.sendVerificationMail();
-        this.setUserData(result.user);
-      }).catch((error) => {
-        window.alert(error.message);
-      });
+  async signUp( email: string, password: string ) {
+    try {
+      let result = await this.afAuth.createUserWithEmailAndPassword( email, password );
+      this.sendVerificationMail();
+      this.setUserData( result.user );
+    } catch ( error ) {
+      window.alert( error.message );
+    }
   }
 
-  sendVerificationMail() {
-    return this.afAuth.currentUser
-      .then((u: any) => u.sendEmailVerification())
-      .then(() => {
-        this.router.navigate(['verify-email-address']);
-      });
+  async sendVerificationMail() {
+    let u = await this.afAuth.currentUser;
+    await u.sendEmailVerification();
+    this.router.navigate( [ 'verify-email-address' ] );
   }
 
-  forgotPassword(passwordResetEmail: string) {
-    return this.afAuth
-      .sendPasswordResetEmail(passwordResetEmail)
-      .then(() => {
-        window.alert('Password reset email sent, check your inbox.');
-      })
-      .catch((error) => {
-        window.alert(error);
-      });
-  }
-
-  get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('user')!);
-    return user !== null && user.emailVerified !== false;
+  async forgotPassword( passwordResetEmail: string ) {
+    try {
+      await this.afAuth
+        .sendPasswordResetEmail( passwordResetEmail );
+      window.alert( 'Password reset email sent, check your inbox.' );
+    } catch ( error ) {
+      window.alert( error );
+    }
   }
 
   googleAuth() {
@@ -83,18 +77,16 @@ export class AuthService {
     });
   }
 
-  authLogin(provider: any) {
-    return this.afAuth
-      .signInWithPopup(provider)
-      .then((result) => {
-        this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
-        });
-        this.setUserData(result.user);
-      })
-      .catch((error) => {
-        window.alert(error);
-      });
+  async authLogin( provider: any ) {
+    try {
+      let result = await this.afAuth.signInWithPopup( provider );
+      this.ngZone.run( () => {
+        this.router.navigate( [ 'dashboard' ] );
+      } );
+      this.setUserData( result.user );
+    } catch ( error ) {
+      window.alert( error );
+    }
   }
 
   setUserData(user) {
@@ -111,10 +103,9 @@ export class AuthService {
     });
   }
 
-  signOut() {
-    return this.afAuth.signOut().then(() => {
-      localStorage.removeItem('user');
-      this.router.navigate(['sign-in']);
-    });
+  async signOut() {
+    await this.afAuth.signOut();
+    localStorage.removeItem( 'user' );
+    this.router.navigate( [ 'sign-in' ] );
   }
 }

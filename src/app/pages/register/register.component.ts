@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services';
+import { Store } from '@ngrx/store';
+import { register } from '../../store/actions';
 
 @Component({
   selector: 'tasker-register',
@@ -12,7 +14,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService,
+    private store: Store
   ) { }
 
   ngOnInit(): void {
@@ -24,12 +26,8 @@ export class RegisterComponent implements OnInit {
 
   register() {
     if ( this.registerForm.invalid ) return;
-
     const { email, password } = this.registerForm.value;
-    this.authService.signUp(email, password)
-      .then(() => {
-        this.registerForm.reset();
-      })
+    this.store.dispatch(register({ email, password }));
   }
 
 }

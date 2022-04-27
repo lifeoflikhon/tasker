@@ -8,7 +8,7 @@ import {
   logoutFailure,
   logoutSuccess,
   register, registerFailure,
-  registerSuccess, verifyEmail, verifyEmailFailure, verifyEmailSuccess
+  registerSuccess, setAuthState, verifyEmail, verifyEmailFailure, verifyEmailSuccess
 } from '../actions';
 import { User } from '../../models';
 
@@ -30,11 +30,11 @@ export const authReducer = createReducer(
   initialAuthState,
 
   on(login, (state) => ({ ...state, loading: true })),
-  on(loginSuccess, (state) => ({ ...state, isLoggedIn: true, loading: false })),
-  on(loginFailure, (state) => ({ ...state, isLoggedIn: false, loading: false })),
+  on(loginSuccess, (state, { user }) => ({ ...state, user, isLoggedIn: true, loading: false })),
+  on(loginFailure, (state) => ({ ...state, user: null, isLoggedIn: false, loading: false })),
 
   on(logout, (state) => ({ ...state, loading: true })),
-  on(logoutSuccess, (state) => ({ ...state, isLoggedIn: false, loading: false })),
+  on(logoutSuccess, (state) => ({ ...state, user: null, isLoggedIn: false, loading: false })),
   on(logoutFailure, (state) => ({ ...state, loading: false })),
 
   on(register, (state) => ({ ...state, loading: true })),
@@ -48,4 +48,6 @@ export const authReducer = createReducer(
   on(verifyEmail, (state) => ({ ...state, loading: true })),
   on(verifyEmailSuccess, (state) => ({ ...state, loading: false })),
   on(verifyEmailFailure, (state) => ({ ...state, loading: false })),
+
+  on(setAuthState, (state, { user, isLoggedIn }) => ({ ...state, loading: false, user, isLoggedIn}))
 );

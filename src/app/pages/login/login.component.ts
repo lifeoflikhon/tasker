@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services';
+import { Store } from '@ngrx/store';
+import { login } from '../../store/actions';
 
 @Component({
   selector: 'tasker-login',
@@ -13,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService
+    private store: Store
   ) { }
 
   ngOnInit(): void {
@@ -25,12 +27,8 @@ export class LoginComponent implements OnInit {
 
   signIn() {
     if ( this.loginForm.invalid ) return;
-
     const { email, password } = this.loginForm.value;
-    this.authService.signIn(email, password)
-      .then(() => {
-        this.loginForm.reset();
-      });
+    this.store.dispatch(login({ email, password }));
   }
 
 }

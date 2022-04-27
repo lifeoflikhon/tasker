@@ -9,7 +9,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { LayoutsModule } from './layouts/layouts.module';
 import { authReducer, projectReducer, taskReducer } from './store/reducers';
-import { ProjectEffect, TaskEffect } from './store/effects';
+import { AuthEffect, ProjectEffect, TaskEffect } from './store/effects';
 import { ApiInterceptor } from './shared/interceptors/api.interceptor';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
@@ -19,6 +19,7 @@ import { TaskService } from './pages/tasks/services/task.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AuthService } from './services';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule( {
   declarations: [
@@ -35,13 +36,15 @@ import { AuthService } from './services';
     } ),
     EffectsModule.forRoot( [
       TaskEffect,
-      ProjectEffect
+      ProjectEffect,
+      AuthEffect
     ] ),
     HttpClientModule,
     LayoutsModule,
     AngularFireModule.initializeApp(environment.firebase),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
+    SharedModule
   ],
   providers: [AuthService],
   bootstrap: [ AppComponent ]

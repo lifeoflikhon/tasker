@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services';
+import { Store } from '@ngrx/store';
+import { verifyEmail } from '../../store/actions';
 
 @Component({
   selector: 'tasker-verify-email',
@@ -9,17 +11,14 @@ import { AuthService } from '../../services';
 export class VerifyEmailComponent implements OnInit {
 
   constructor(
-    private authService: AuthService,
+    private store: Store,
   ) { }
 
   ngOnInit(): void {
   }
 
   sendVerificationEmail() {
-    this.authService.sendVerificationMail()
-      .then(() => {
-        console.log('Verification email sent');
-      })
+    this.store.dispatch(verifyEmail());
   }
 
 }

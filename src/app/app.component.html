@@ -1,8 +1,8 @@
 <div class="h-screen flex">
-  <tasker-navbar></tasker-navbar>
+  <tasker-navbar *taskerShowIfLoggedIn></tasker-navbar>
 
   <div class="flex-1 flex flex-col">
-    <tasker-toolbar></tasker-toolbar>
+    <tasker-toolbar *taskerShowIfLoggedIn></tasker-toolbar>
     <div class="flex-1 overflow-y-auto">
       <router-outlet></router-outlet>
     </div>

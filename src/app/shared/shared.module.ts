@@ -10,6 +10,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputEditorComponent } from './components/input-editor/input-editor.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { ShowIfLoggedInDirective } from './directives/show-if-logged-in.directive';
 
 
 
@@ -21,7 +22,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     InputSelectComponent,
     InputDateComponent,
     ProgressBarComponent,
-    InputEditorComponent
+    InputEditorComponent,
+    ShowIfLoggedInDirective
   ],
   exports: [
     ProgressBarComponent,
@@ -29,7 +31,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     InputEditorComponent,
     InputTextComponent,
     InputUrlComponent,
-    InputSelectComponent
+    InputSelectComponent,
+    ShowIfLoggedInDirective
   ],
   imports: [
     CommonModule,
