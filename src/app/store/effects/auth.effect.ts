@@ -13,7 +13,7 @@ import {
   register, registerFailure,
   registerSuccess, setAuthState, verifyEmail, verifyEmailFailure, verifyEmailSuccess
 } from '../actions';
-import { map, switchMap } from 'rxjs';
+import { map, of, switchMap } from 'rxjs';
 
 @Injectable()
 export class AuthEffect {
@@ -61,9 +61,5 @@ export class AuthEffect {
       .then(() => verifyEmailSuccess())
       .catch(error => verifyEmailFailure({ error }))
     )
-  ))
-
-  setAuthState$ = createEffect(() => this.actions.pipe(
-    ofType(setAuthState)
   ))
 }
