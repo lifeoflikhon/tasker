@@ -1,12 +1,16 @@
-<nav class="h-12 border-b border-gray-200 flex items-center justify-between">
+<nav *ngIf="currentUser$ | async as currentUser" class="h-12 border-b border-gray-200 flex items-center justify-between">
   <div>
     <input type="search" placeholder="Search" class="border-0 text-xs">
   </div>
 
   <div>
-    <button class="flex items-center space-x-2 px-3 py-1">
-      <span>Likhon</span>
+    <button [matMenuTriggerFor]="menu" class="flex items-center space-x-2 px-3 py-1">
+      <span>{{currentUser.user.displayName || currentUser.user.email}}</span>
       <i class="fal fa-user"></i>
     </button>
   </div>
 </nav>
+
+<mat-menu #menu="matMenu">
+  <button (click)="logout()" class="text-xs" mat-menu-item>Logout</button>
+</mat-menu>

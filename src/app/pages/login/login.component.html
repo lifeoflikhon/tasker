@@ -3,8 +3,9 @@
   <tasker-input-text [control]="loginForm.get('email')" label="Email"></tasker-input-text>
   <tasker-input-text [control]="loginForm.get('password')" label="Password"></tasker-input-text>
 
-  <div class="my-2">
+  <div class="my-2 grid">
     <a class="hover:underline text-indigo-700" routerLink="/register">New? Create account now.</a>
+    <a class="hover:underline text-indigo-700" routerLink="/forgot-password">Forgot Password?</a>
   </div>
 
   <button class="p-3 bg-black text-white font-bold uppercase tracking-wide">Login</button>
