@@ -49,7 +49,7 @@ export class NewTaskComponent implements OnInit {
   save() {
     if ( this.taskForm.invalid ) return;
 
-    if ( this.task.id ) {
+    if ( this.task && this.task?.id ) {
       this.store.dispatch(updateTask({ task: {
           ...this.taskForm.value,
           dueDate: new Date(this.taskForm.value.dueDate).toISOString(),
