@@ -104,6 +104,10 @@ export class AuthService {
     });
   }
 
+  get loggedInUser() {
+    return JSON.parse(localStorage.getItem('user'));
+  }
+
   async signOut() {
     await this.afAuth.signOut();
     localStorage.removeItem( 'user' );

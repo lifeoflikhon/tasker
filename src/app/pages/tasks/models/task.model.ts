@@ -1,4 +1,5 @@
 import { Project } from '../../projects/models';
+import { User } from '../../../models';
 
 export interface Task {
   dueDate?: string;
@@ -11,6 +12,9 @@ export interface Task {
 
   projectId?: string;
   project?: Project;
+
+  assigneeId?: string;
+  assignee?: User;
 
   estimatedTime?: number;
   spentTime?: number;

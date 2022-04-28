@@ -1,1 +1,8 @@
-<p>input-date works!</p>
+<div class="flex flex-col md:flex-row">
+  <label [attr.for]="label" class="w-20 font-bold">{{label}}</label>
+  <div class="flex items-center justify-between">
+    <input [matDatepicker]="picker" [formControl]="control" placeholder="ie. DD/MM/YYYY" [attr.id]="label" class="flex-1" type="text">
+    <mat-datepicker-toggle [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </div>
+</div>

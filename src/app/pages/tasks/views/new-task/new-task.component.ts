@@ -31,6 +31,7 @@ export class NewTaskComponent implements OnInit {
       description: [''],
       estimatedTime: [0],
       spentTime: [0],
+      dueDate: [new Date().toISOString()],
       url: [''],
       projectId: [null],
       project: [null]
@@ -44,7 +45,7 @@ export class NewTaskComponent implements OnInit {
       ...this.taskForm.value,
       status: 'to do',
       createdAt: new Date().toISOString(),
-      dueDate: new Date().toISOString(),
+      dueDate: this.taskForm.value.dueDate.toISOString(),
     };
 
     this.store.dispatch(createTask({ task: newTask }));

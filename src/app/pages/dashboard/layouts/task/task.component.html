@@ -15,7 +15,7 @@
     </div>
 
     <div>
-      <p>Assignee: </p>
+      <p class="w-[12ch] break-all line-clamp-1">{{task.assignee.displayName || task.assignee.email}}</p>
       <p>Project: <a class="font-bold text-indigo-700" routerLink="/projects/{{task.projectId}}">{{task?.project?.name}}</a></p>
     </div>
   </div>

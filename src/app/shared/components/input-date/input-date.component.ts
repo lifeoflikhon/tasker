@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { AbstractControl, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'tasker-input-date',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./input-date.component.scss']
 })
 export class InputDateComponent implements OnInit {
+  @Input() label: string;
+  @Input() control: any;
 
   constructor() { }
 

@@ -20,6 +20,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AuthService } from './services';
 import { SharedModule } from './shared/shared.module';
+import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 
 @NgModule( {
   declarations: [
@@ -44,9 +45,13 @@ import { SharedModule } from './shared/shared.module';
     AngularFireModule.initializeApp(environment.firebase),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
-    SharedModule
+    SharedModule,
+    MatNativeDateModule
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
+  ],
   bootstrap: [ AppComponent ]
 } )
 export class AppModule {

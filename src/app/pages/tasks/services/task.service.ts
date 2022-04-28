@@ -1,8 +1,9 @@
 import { Inject, Injectable, Optional } from '@angular/core';
 import { Task } from '../models';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { CrudService } from '../../../shared/services/crud.service';
+import { AuthService } from '../../../services';
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +13,15 @@ export class TaskService {
 
   constructor(
     private http: HttpClient,
-    private crud: CrudService
+    private crud: CrudService,
+    private authService: AuthService
   ) {
   }
 
   load(): Observable<Task[]> {
-    return this.crud.getCollections<Task>(this.endpoint);
+    return this.crud.getCollections<Task>(this.endpoint, ref => {
+      return ref.where('assigneeId', '==', this.authService.loggedInUser.uid);
+    });
   }
 
   save( task: Task): Observable<Task> {
@@ -33,7 +37,9 @@ export class TaskService {
   }
 
   private add(task: Task): Observable<any> {
-    return this.crud.addDocument(this.endpoint, task);
+    const user = this.authService.loggedInUser;
+    const newTask: Task = {...task, assigneeId: user.uid, assignee: user.providerData[0]}
+    return this.crud.addDocument(this.endpoint, newTask);
   }
 
   private edit(task: Task): Observable<any> {

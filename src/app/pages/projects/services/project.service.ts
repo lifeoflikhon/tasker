@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Task } from '../../tasks/models';
 import { Project } from '../models';
 import { CrudService } from '../../../shared/services/crud.service';
+import { AuthService } from '../../../services';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +14,14 @@ export class ProjectService {
 
   constructor(
     private http: HttpClient,
-    private crud: CrudService
+    private crud: CrudService,
+    private authService: AuthService
   ) { }
 
   load(): Observable<Project[]> {
-    return this.crud.getCollections(this.endpoint);
+    return this.crud.getCollections(this.endpoint, ref => {
+      return ref.where('createdById', '==', this.authService.loggedInUser.uid);
+    });
   }
 
   save( project: Project): Observable<Project> {
@@ -33,7 +37,9 @@ export class ProjectService {
   }
 
   private add(project: Project): Observable<any> {
-    return this.crud.addDocument(this.endpoint, project);
+    const user = this.authService.loggedInUser;
+    const newProject: Project = {...project, createdById: user.uid, createdBy: user.providerData[0]}
+    return this.crud.addDocument(this.endpoint, newProject);
   }
 
   private edit(project: Project): Observable<Project> {

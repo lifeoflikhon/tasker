@@ -11,6 +11,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { InputEditorComponent } from './components/input-editor/input-editor.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ShowIfLoggedInDirective } from './directives/show-if-logged-in.directive';
+import { SafeUrlPipe } from './pipes/safe-url.pipe';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -23,7 +26,8 @@ import { ShowIfLoggedInDirective } from './directives/show-if-logged-in.directiv
     InputDateComponent,
     ProgressBarComponent,
     InputEditorComponent,
-    ShowIfLoggedInDirective
+    ShowIfLoggedInDirective,
+    SafeUrlPipe
   ],
   exports: [
     ProgressBarComponent,
@@ -32,13 +36,16 @@ import { ShowIfLoggedInDirective } from './directives/show-if-logged-in.directiv
     InputTextComponent,
     InputUrlComponent,
     InputSelectComponent,
-    ShowIfLoggedInDirective
+    ShowIfLoggedInDirective,
+    SafeUrlPipe,
+    InputDateComponent
   ],
   imports: [
     CommonModule,
     MatTooltipModule,
     ReactiveFormsModule,
-    NgSelectModule
-  ]
+    NgSelectModule,
+    MatDatepickerModule
+  ],
 })
 export class SharedModule { }
