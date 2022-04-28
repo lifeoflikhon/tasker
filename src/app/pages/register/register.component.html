@@ -1,1 +1,11 @@
-<p>register works!</p>
+<form class="w-[300px] mx-auto border border-gray-300 p-4 grid gap-2 shadow-lg" [formGroup]="registerForm" (ngSubmit)="register()">
+  <h2 class="text-xl font-bold">Tasker - Register</h2>
+  <tasker-input-text [control]="registerForm.get('email')" label="Email"></tasker-input-text>
+  <tasker-input-text [control]="registerForm.get('password')" label="Password"></tasker-input-text>
+
+  <div class="my-2">
+    <a class="hover:underline text-indigo-700" routerLink="/login">Already have an account? Login now.</a>
+  </div>
+
+  <button class="p-3 bg-black text-white font-bold uppercase tracking-wide">Register</button>
+</form>

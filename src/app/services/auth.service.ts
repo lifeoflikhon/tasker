@@ -17,16 +17,16 @@ export class AuthService {
     private router: Router,
     private ngZone: NgZone
   ) {
-    // this.afAuth.authState.subscribe(user => {
-    //   if (user) {
-    //     this.userData = user;
-    //     localStorage.setItem('user', JSON.stringify(this.userData));
-    //     JSON.parse(localStorage.getItem('user'));
-    //   } else {
-    //     localStorage.setItem('user', null);
-    //     JSON.parse(localStorage.getItem('user'));
-    //   }
-    // });
+    this.afAuth.authState.subscribe(user => {
+      if (user) {
+        this.userData = user;
+        localStorage.setItem('user', JSON.stringify(this.userData));
+        JSON.parse(localStorage.getItem('user'));
+      } else {
+        localStorage.setItem('user', null);
+        JSON.parse(localStorage.getItem('user'));
+      }
+    });
   }
 
   async signIn( email: string, password: string ) {
@@ -56,7 +56,7 @@ export class AuthService {
   async sendVerificationMail() {
     let u = await this.afAuth.currentUser;
     await u.sendEmailVerification();
-    this.router.navigate( [ 'verify-email-address' ] );
+    this.router.navigate( [ 'verify-email' ] );
   }
 
   async forgotPassword( passwordResetEmail: string ) {
@@ -98,6 +98,7 @@ export class AuthService {
       photoURL: user.photoURL,
       emailVerified: user.emailVerified
     };
+
     return userRef.set(userData, {
       merge: true
     });
@@ -106,6 +107,6 @@ export class AuthService {
   async signOut() {
     await this.afAuth.signOut();
     localStorage.removeItem( 'user' );
-    this.router.navigate( [ 'sign-in' ] );
+    this.router.navigate( [ 'login' ] );
   }
 }
