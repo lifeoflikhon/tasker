@@ -1,1 +1,27 @@
-{{ task$ | async | json }}
+<div *ngIf="task$ | async as task" class="p-8">
+  <div *ngIf="task.status === 'to do'" class="py-2 flex items-center justify-end">
+    <a routerLink="/tasks/edit/{{task.id}}" class="underline">Edit</a>
+  </div>
+
+  <div class="mb-2 w-full sm:w-80">
+    <tasker-progress-bar [max]="task.estimatedTime" [value]="task.spentTime"></tasker-progress-bar>
+  </div>
+
+  <div class="mb-4">
+    <h1 class="text-2xl mb-1 font-light">{{task.title}}</h1>
+    <p [ngClass]="{'bg-black': task.status === 'to do', 'bg-red-800': task.status === 'blocker', 'bg-green-800': task.status === 'done'}" class="text-[8px] uppercase font-bold text-white px-3 py-1 max-w-min whitespace-nowrap">{{task.status}}</p>
+  </div>
+
+  <p class="text-gray-500">{{task.description}}</p>
+
+  <div class="grid gap-1 my-4">
+    <p><span class="font-bold"><i class="fal fa-calendar"></i> Due Date:</span> {{task.dueDate | date}}</p>
+    <p><span class="font-bold"><i class="fal fa-user-circle"></i> Assignee:</span> {{task.assignee.displayName || task.assignee.email}}</p>
+    <p><span class="font-bold"><i class="fal fa-cube"></i> Project:</span> <a routerLink="/projects/{{task.projectId}}">{{task?.project?.name}}</a></p>
+  </div>
+
+  <div class="mt-4">
+    <p><b>Estimated: </b> {{task.estimatedTime}}</p>
+    <p><b>Spent: </b> {{task.spentTime}}</p>
+  </div>
+</div>

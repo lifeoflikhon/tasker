@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { selectTask } from '../../../../store/selectors';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { loadTask } from '../../../../store/actions';
-import { selectTask } from '../../../../store/selectors';
-import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'tasker-task-details',
-  templateUrl: './task-details.component.html',
-  styleUrls: ['./task-details.component.scss']
+  selector: 'tasker-edit-task',
+  templateUrl: './edit-task.component.html',
+  styleUrls: ['./edit-task.component.scss']
 })
-export class TaskDetailsComponent implements OnInit {
+export class EditTaskComponent implements OnInit {
   public task$ = this.store.select(selectTask);
 
   constructor(

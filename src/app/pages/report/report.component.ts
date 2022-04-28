@@ -10,6 +10,7 @@ import { AppState } from '../../store/app-state';
 import { selectAllTasks } from '../../store/selectors';
 import { deleteTask, loadTasks } from '../../store/actions';
 import * as XLSX from 'xlsx';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'tasker-report',
@@ -24,6 +25,7 @@ export class ReportComponent implements OnInit {
 
   constructor(
     private store: Store<AppState>,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -54,7 +56,9 @@ export class ReportComponent implements OnInit {
     }).unsubscribe();
   }
 
-  edit( $event: Task ) {}
+  edit( $event: Task ) {
+    this.router.navigate(['/tasks/edit', $event.id]);
+  }
 
   delete( $event: Task ) {
     this.store.dispatch(deleteTask({ id: $event.id }));

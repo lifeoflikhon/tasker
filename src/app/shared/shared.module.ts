@@ -14,6 +14,7 @@ import { ShowIfLoggedInDirective } from './directives/show-if-logged-in.directiv
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { InputPasswordComponent } from './components/input-password/input-password.component';
 
 
 
@@ -27,7 +28,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     ProgressBarComponent,
     InputEditorComponent,
     ShowIfLoggedInDirective,
-    SafeUrlPipe
+    SafeUrlPipe,
+    InputPasswordComponent
   ],
   exports: [
     ProgressBarComponent,
@@ -38,7 +40,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     InputSelectComponent,
     ShowIfLoggedInDirective,
     SafeUrlPipe,
-    InputDateComponent
+    InputDateComponent,
+    InputPasswordComponent
   ],
   imports: [
     CommonModule,

@@ -9,6 +9,7 @@ import { AbstractControl, FormControl } from '@angular/forms';
 export class InputTextComponent implements OnInit {
   @Input() control: any;
   @Input() label: string;
+  @Input() placeholder: string = 'starter pack';
 
   constructor() { }
 

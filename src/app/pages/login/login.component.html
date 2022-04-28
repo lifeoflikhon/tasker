@@ -1,7 +1,7 @@
 <form class="w-[300px] mx-auto border border-gray-300 p-4 grid gap-2 shadow-lg" [formGroup]="loginForm" (ngSubmit)="signIn()">
   <h2 class="text-xl font-bold">Tasker - Login</h2>
-  <tasker-input-text [control]="loginForm.get('email')" label="Email"></tasker-input-text>
-  <tasker-input-text [control]="loginForm.get('password')" label="Password"></tasker-input-text>
+  <tasker-input-text placeholder="admin@example.com" [control]="loginForm.get('email')" label="Email"></tasker-input-text>
+  <tasker-input-password [control]="loginForm.get('password')"></tasker-input-password>
 
   <div class="my-2 grid">
     <a class="hover:underline text-indigo-700" routerLink="/register">New? Create account now.</a>

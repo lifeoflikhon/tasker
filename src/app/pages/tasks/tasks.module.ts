@@ -7,13 +7,15 @@ import { NewTaskComponent } from './views/new-task/new-task.component';
 import { TaskDetailsComponent } from './views/task-details/task-details.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
+import { EditTaskComponent } from './views/edit-task/edit-task.component';
 
 
 @NgModule( {
   declarations: [
     TasksComponent,
     NewTaskComponent,
-    TaskDetailsComponent
+    TaskDetailsComponent,
+    EditTaskComponent
   ],
   exports: [
     NewTaskComponent
